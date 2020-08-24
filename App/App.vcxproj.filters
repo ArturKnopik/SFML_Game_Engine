@@ -24,7 +24,7 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PlayerDrawing.cpp">
+    <ClCompile Include="src\PlayerUpdatable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClInclude Include="src\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\PlayerDrawing.h">
+    <ClInclude Include="src\PlayerUpdatable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

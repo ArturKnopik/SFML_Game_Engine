@@ -22,7 +22,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\PlayerDrawing.cpp" />
+    <ClCompile Include="src\PlayerUpdatable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.vcxproj">
@@ -32,7 +32,7 @@
   <ItemGroup>
     <ClInclude Include="src\MenuState.h" />
     <ClInclude Include="src\Player.h" />
-    <ClInclude Include="src\PlayerDrawing.h" />
+    <ClInclude Include="src\PlayerUpdatable.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

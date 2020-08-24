@@ -11,10 +11,11 @@ namespace KOD
   private: 
     AnimationController m_animationController;
     sf::Sprite m_sprite;
-    sf::Vector2f m_spritePosition;
+    sf::Vector2f& m_spritePosition;
     virtual void updateAnimation(const int dt);
   public:
-    IDrawable() = default;
+    IDrawable() = delete;
+    IDrawable(sf::Vector2f& position);
     virtual void draw(std::shared_ptr<sf::RenderWindow> window);
     AnimationController& getAnimationController();
   };

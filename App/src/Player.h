@@ -8,9 +8,8 @@ class Player
 {
   KOD::Animation m_animation;
 public:
-  Player() = delete;
-  Player(std::shared_ptr<KOD::IDrawable> drawing);
+  Player();
   virtual ~Player() = default;
-  void update(const int dt);
+ 
 };
 

@@ -22,7 +22,6 @@ void KOD::IGameState::draw()
 
 void KOD::IGameState::update(const int dt)
 {
-  //TODO:: implement search object in camera area to update
   for (auto& obj : m_globalGameObjectMap) {
     auto objUpdatable = obj.second->getUpdatable();
     if (objUpdatable != nullptr)

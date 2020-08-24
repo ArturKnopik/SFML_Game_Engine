@@ -23,18 +23,12 @@ void KOD::ResourceManager::addResource(std::string name, std::shared_ptr<sf::Tex
   {
     if (it->first == name)
     {
-      if (KOD::debugMode)
-      {
-        std::cout << "error, texture named '" + name + "' exist in list" << std::endl;
-      }
+      sendDebugInformation("error, texture named '" + name + "' exist in list");
       return;
     }
   }
   m_textureList.insert({ name, texture });
-  if (KOD::debugMode)
-  {
-    std::cout << "Added '" + name + "' to list" << std::endl;
-  }
+  sendDebugInformation("Added '" + name + "' to list");
 }
 
 std::shared_ptr<sf::Texture> KOD::ResourceManager::getTexture(std::string name)
@@ -46,10 +40,7 @@ std::shared_ptr<sf::Texture> KOD::ResourceManager::getTexture(std::string name)
       return it->second;
     }
   }
-  if (KOD::debugMode)
-  {
-    std::cout << "returned nullptr" << std::endl;
-  }
+  sendDebugInformation("returned nullptr");
   return nullptr;
 }
 
