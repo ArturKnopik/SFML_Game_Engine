@@ -18,9 +18,8 @@ namespace KOD {
     virtual ~Settings() {};
   };
 
-  const bool KOD_API debugMode = true;
+  extern  const bool KOD_API debugMode;
 }
-
 
 // some informations
 //TODO: dt info: 1000000 = 1s (dt)

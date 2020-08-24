@@ -1,5 +1,11 @@
 #include "IDrawable.h"
 
+KOD::IDrawable::IDrawable(sf::Vector2f& position)
+	:m_spritePosition(position)
+{
+
+}
+
 void KOD::IDrawable::draw(std::shared_ptr<sf::RenderWindow> window)
 {
 	if (m_animationController.getTexture() == nullptr)
