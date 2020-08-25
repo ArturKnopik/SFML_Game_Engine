@@ -10,14 +10,6 @@ KOD::IGameState::IGameState()
 
 void KOD::IGameState::draw()
 {
-  sf::RectangleShape rect;
-  rect.setFillColor(sf::Color::Red);
-  rect.setSize({ 32, 32 });
-  rect.setPosition({ 499, 600 });
-  m_game.lock()->m_window->draw(rect);
-
-
-
   sf::View view;
   view.setSize(m_game.lock()->m_window->getSize().x, m_game.lock()->m_window->getSize().y);
   view.setCenter(m_camera.getPosition());
