@@ -21,6 +21,7 @@ void MenuState::printTestMassage()
 
 MenuState::MenuState(std::shared_ptr<KOD::Game> game)
 {
+
   m_game = game;
   // START: TESTING PIECE OF CODE
   printTestMassage();
@@ -35,6 +36,7 @@ MenuState::MenuState(std::shared_ptr<KOD::Game> game)
                                   static_cast<float>(game->m_window->getSize().y) - 150
   };
   m_player->setPosition(playerPosition);
+  m_camera.bindGameObiect(m_player);
   // END TESTING PIECE OF CODE
 }
 
