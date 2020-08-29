@@ -2,16 +2,17 @@
 #include <KOD/IGameState.h>
 #include "Player.h"
 
-class MenuState :
+class TestGameState :
   public KOD::IGameState
 {
 private:
   std::shared_ptr<Player> m_player;
+  std::shared_ptr<Player> m_player2;
   void printTestMassage();
 public:
-  MenuState() = delete;
-  MenuState(std::shared_ptr<KOD::Game> game);
+  TestGameState() = delete;
+  TestGameState(std::shared_ptr<KOD::Game> game);
   virtual void input() override;
-  virtual ~MenuState();
+  virtual ~TestGameState();
 };
 

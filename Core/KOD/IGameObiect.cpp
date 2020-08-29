@@ -8,7 +8,7 @@ KOD::IGameObject::IGameObject()
 
 }
 
-KOD::IGameObject::IGameObject(std::shared_ptr<IUpdatable> updatable, std::shared_ptr<IDrawable> drawable, std::shared_ptr<ISolid> solid)
+KOD::IGameObject::IGameObject(std::shared_ptr<IUpdatable> updatable, std::shared_ptr<IDrawable> drawable, std::shared_ptr<Solid> solid)
   : m_updatable(updatable), m_drawable(drawable), m_solid(solid), m_uid((sm_uid++))
 {
 }
@@ -22,6 +22,11 @@ void KOD::IGameObject::setPosition(const int positionX, const int positionY)
 {
   m_position.x = static_cast<float>(positionX);
   m_position.y = static_cast<float>(positionY);
+}
+
+const sf::Vector2f KOD::IGameObject::getSize()
+{
+  return m_size;
 }
 
 const sf::Vector2f KOD::IGameObject::getPosition()
@@ -47,7 +52,7 @@ std::shared_ptr<KOD::IDrawable> KOD::IGameObject::getDrawable()
   return nullptr;
 }
 
-std::shared_ptr<KOD::ISolid> KOD::IGameObject::getSolid()
+std::shared_ptr<KOD::Solid> KOD::IGameObject::getSolid()
 {
   if (m_solid != nullptr)
   {

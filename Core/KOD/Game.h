@@ -16,7 +16,7 @@ namespace KOD
     std::vector<std::shared_ptr<IGameState>> m_states;
   public:
     Game();
-    Game(KOD::Settings settings);
+    Game(const KOD::Settings settings);
     ~Game();
     void pushState(std::shared_ptr<IGameState> state);
     void popState();

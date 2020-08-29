@@ -5,14 +5,15 @@
 
 namespace KOD
 {
-  class KOD_API ISolid
+  class KOD_API Solid
   {
     sf::Vector2f& m_size;
     sf::Vector2f& m_position;
   public:
-    ISolid() = delete;
-    ISolid(sf::Vector2f& position, sf::Vector2f& size);
-    virtual void onCollsion() = 0;
+    Solid() = delete;
+    Solid(sf::Vector2f& position, sf::Vector2f& size);
+    const sf::Vector2f& getSize();
+    virtual void onCollsion();
   };
 }
 

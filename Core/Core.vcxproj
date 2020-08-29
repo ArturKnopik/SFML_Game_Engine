@@ -28,7 +28,7 @@
     <ClInclude Include="KOD\IDrawable.h" />
     <ClInclude Include="KOD\IGameObject.h" />
     <ClInclude Include="KOD\IGameState.h" />
-    <ClInclude Include="KOD\ISolid.h" />
+    <ClInclude Include="KOD\Solid.h" />
     <ClInclude Include="KOD\IUpdatable.h" />
     <ClInclude Include="KOD\KOD_export.h" />
     <ClInclude Include="KOD\ResourceHandler.h" />
@@ -47,7 +47,7 @@
     <ClCompile Include="KOD\IDrawable.cpp" />
     <ClCompile Include="KOD\IGameObiect.cpp" />
     <ClCompile Include="KOD\IGameState.cpp" />
-    <ClCompile Include="KOD\ISolid.cpp" />
+    <ClCompile Include="KOD\Solid.cpp" />
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />

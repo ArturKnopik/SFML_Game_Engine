@@ -1,11 +1,11 @@
-#include "MenuState.h"
+#include "TestGameState.h"
 #include "Player.h"
 #include "KOD/ResourceManager.h"
 #include "PlayerUpdatable.h"
 #include "KOD/UtilityTools.h"
 #include <sstream>
 
-void MenuState::printTestMassage()
+void TestGameState::printTestMassage()
 {
   KOD::sendDebugInformation("test text: " + std::string("sample text"));
 
@@ -19,10 +19,11 @@ void MenuState::printTestMassage()
   std::cout << "random double:\n   " << randomDouble1 << "\n   " << randomDouble2 << "\n   " << randomDouble3 << std::endl;
 }
 
-MenuState::MenuState(std::shared_ptr<KOD::Game> game)
+TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 {
-
   m_game = game;
+  sf::Vector2f extendLocalAreaSize = { 100, 100 };
+  setAdditionalSpaceToSet(extendLocalAreaSize);
   // START: TESTING PIECE OF CODE
   printTestMassage();
   auto texture = std::make_shared<sf::Texture>();
@@ -30,7 +31,11 @@ MenuState::MenuState(std::shared_ptr<KOD::Game> game)
   KOD::ResourceManager::getInstance().addResource("playerSpaceShip", texture);
 
   m_player = std::make_shared<Player>();
+  m_player2 = std::make_shared<Player>();
+  m_player2->setPosition({ 100,100 });
   addGameObject(m_player);
+  addGameObject(m_player2);
+  addGameObject(std::make_shared<Player>());
   m_player->getDrawable()->getAnimationController().play();
   sf::Vector2f playerPosition = { static_cast<float>(game->m_window->getSize().x / 2),
                                   static_cast<float>(game->m_window->getSize().y) - 150
@@ -40,9 +45,13 @@ MenuState::MenuState(std::shared_ptr<KOD::Game> game)
   // END TESTING PIECE OF CODE
 }
 
-void MenuState::input()
+void TestGameState::input()
 {
   IGameState::input();
+  if (collsionDetectionAABBObjByObj(m_player, m_player2))
+  {
+    printf("asdasda\n");
+  }
 
   //TODO::find way to remove dynamic pointer casting
 
@@ -52,7 +61,7 @@ void MenuState::input()
     playerUpdatable = std::dynamic_pointer_cast<PlayerUpdatable>(m_player->getUpdatable());
     playerUpdatable->setHorizontalDirection(PlayerUpdatable::Direction::STOP);
     playerUpdatable->setVerticalDirection(PlayerUpdatable::Direction::STOP);
-
+    // Some controll keys
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
       playerUpdatable->setVerticalDirection(PlayerUpdatable::Direction::UP);
@@ -74,6 +83,18 @@ void MenuState::input()
     {
       playerUpdatable->setHorizontalDirection(PlayerUpdatable::Direction::RIGHT);
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
+    {
+      m_camera.setPosition({ 400,300 });
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
+    {
+      m_camera.bindGameObiect(m_player);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::F3))
+    {
+      m_camera.bindGameObiect(m_player2);
+    }
   }
 
 
@@ -88,7 +109,7 @@ void MenuState::input()
     case sf::Event::KeyPressed:
       if (m_event->key.code == sf::Keyboard::Escape)
       {
-        // fast quit code - debug
+        // fast quit code
         m_game.lock()->m_window->close();
       }
       break;
@@ -97,6 +118,6 @@ void MenuState::input()
 }
 
 
-MenuState::~MenuState()
+TestGameState::~TestGameState()
 {
 }

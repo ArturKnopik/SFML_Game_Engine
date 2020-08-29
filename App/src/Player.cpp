@@ -4,8 +4,9 @@
 #include "PlayerUpdatable.h"
 
 Player::Player()
-  :IGameObject(std::make_shared<PlayerUpdatable>(m_position), std::make_shared<KOD::IDrawable>(m_position), nullptr)
-{ 
+  :IGameObject(std::make_shared<PlayerUpdatable>(m_position), std::make_shared<KOD::IDrawable>(m_position), std::make_shared<KOD::Solid>(m_position, m_size))
+{
+  m_size = { 32,32 };
   m_animation.setTexture(KOD::ResourceManager::getInstance().getTexture("playerSpaceShip"));
   m_animation.addFrame(KOD::Frame(sf::IntRect(0, 0, 34, 41), 500));
   //sf::IntRect(0, 0, 34, 41), 500) coords in imagea and animation time

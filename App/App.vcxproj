@@ -19,20 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\MenuState.cpp" />
-    <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\PlayerUpdatable.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Core\Core.vcxproj">
       <Project>{8d8d2e14-e4c8-451f-9c1d-c04a3a4229fc}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\MenuState.h" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PlayerUpdatable.cpp" />
+    <ClCompile Include="src\TestGameState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\PlayerUpdatable.h" />
+    <ClInclude Include="src\TestGameState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

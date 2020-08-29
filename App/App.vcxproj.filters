@@ -16,9 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Player.cpp">
@@ -27,15 +24,18 @@
     <ClCompile Include="src\PlayerUpdatable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\TestGameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\MenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\PlayerUpdatable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TestGameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,5 @@
 #include "UtilityTools.h"
+#include "SFML/Graphics/RectangleShape.hpp"
 
 void KOD_API KOD::sendDebugInformation(std::string message)
 {
@@ -22,4 +23,41 @@ double KOD_API KOD::generateRandomDoubleNumber(double min, double max)
   static std::default_random_engine randomEngine(randomDevice());
   std::uniform_real_distribution<double> uniform_dist(min, max);
   return uniform_dist(randomEngine);
+}
+
+bool KOD_API KOD::collsionDetectionAABBObjByObj(IGameObject_prt left, IGameObject_prt right)
+{
+  if (left->getSolid() == nullptr || right->getSolid() == nullptr)
+  {
+    return false;
+  }
+  sf::Vector2f positionLeft = left->getPosition();
+  sf::Vector2f positionRight = right->getPosition();
+  sf::Vector2f sizeLeft = right->getSolid()->getSize();
+  sf::Vector2f sizeRight = right->getSolid()->getSize();
+  return collsionDetectionAABBPosByPos(positionLeft, sizeLeft, positionRight, sizeRight);
+}
+
+
+bool KOD_API KOD::collsionDetectionAABBPosByPos(sf::Vector2f posizeLeft, sf::Vector2f sizeLeft, sf::Vector2f posizeRight, sf::Vector2f sizeRight)
+{
+  if (posizeLeft.x <= posizeRight.x + sizeRight.x &&
+    posizeLeft.x + sizeLeft.x >= posizeRight.x &&
+    posizeLeft.y <= posizeRight.y + sizeRight.y &&
+    sizeLeft.y + posizeLeft.y >= posizeRight.y)
+  {
+    return true;
+  }
+  return false;
+}
+
+std::string KOD_API KOD::clearScreen(std::string cleanInfo)
+{
+#ifdef _WIN32
+  #define CLEAR "cls"
+#else 
+  #define CLEAR "clear"
+#endif
+  system(CLEAR);
+  return cleanInfo;
 }

@@ -8,12 +8,18 @@
 namespace KOD
 {
   class KOD_API IGameState {
+  private:
+    bool isObjectInLocalArea(const sf::Vector2f position, const sf::Vector2f additionalSpace, 
+                                                          const std::shared_ptr<IGameObject> gameObject);
+    sf::Vector2f m_additionalSpaceToScan;
   protected:
     std::shared_ptr<sf::Event> m_event;
     std::weak_ptr<Game> m_game;
     Camera m_camera;
     std::unordered_map<size_t, std::shared_ptr<IGameObject>> m_globalGameObjectMap;
-    //std::unordered_map<size_t, std::shared_ptr<IGameObject>> m_localObjectMap;
+    std::unordered_map<size_t, std::shared_ptr<IGameObject>> m_localObjectMap;
+    void getLocalAreaObjectList(const sf::Vector2f position, const sf::Vector2f additionalSpace);
+    void setAdditionalSpaceToSet(sf::Vector2f additionalSpace);
   public:
     IGameState();
     virtual ~IGameState() = default;

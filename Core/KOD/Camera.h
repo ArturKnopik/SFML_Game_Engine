@@ -17,6 +17,7 @@ namespace KOD {
     void setPosition(sf::Vector2f position);
     void updateCamera();
     void bindGameObiect(std::shared_ptr<IGameObject> gameObejct);
+    //TODO: add 
   };
 }
 

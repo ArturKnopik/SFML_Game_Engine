@@ -5,16 +5,15 @@
 
 KOD::Game::Game()
 {
-  unsigned int sizeX = 1000, sizeY = 800;
-  const std::string appName = "Default app name";
+  KOD::Settings settings;
   sf::ContextSettings sfmlSettings;
   sfmlSettings.antialiasingLevel = 8;
   m_window = std::make_shared<sf::RenderWindow>();				//sf::Style::None - style without border
-  m_window->create(sf::VideoMode(sizeX, sizeY), appName, sf::Style::Default, sfmlSettings);
-
+  m_window->create(sf::VideoMode(settings.windowsSizeX, settings.windowsSizeY), "Default app name", sf::Style::Default, sfmlSettings);
+  m_window->setFramerateLimit(settings.FPS);
 }
 
-KOD::Game::Game(KOD::Settings settings)
+KOD::Game::Game(const KOD::Settings settings)
 {
   sf::ContextSettings sfmlSettings;
   sfmlSettings.antialiasingLevel = 8;
