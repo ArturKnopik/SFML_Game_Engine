@@ -15,11 +15,12 @@ KOD::ObjectFactory& KOD::ObjectFactory::getSingleton()
   return singleton;
 }
 
-void KOD::ObjectFactory::addGameObject(std::shared_ptr<IGameObject> gameObject)
+bool KOD::ObjectFactory::addGameObject(std::shared_ptr<IGameObject> gameObject)
 {
   if (!m_gameState.expired())
   {
-    m_gameState.lock()->addGameObject(gameObject);
+    return m_gameState.lock()->addGameObject(gameObject);
   }
+  return false;
 }
 

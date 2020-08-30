@@ -14,7 +14,7 @@ namespace KOD
     void switchGameState(std::weak_ptr<IGameState> gameState);
     //ObjectFactory(IGameState * gameState);
     static ObjectFactory& getSingleton();
-    void addGameObject(std::shared_ptr<IGameObject> gameObject);
+    bool addGameObject(std::shared_ptr<IGameObject> gameObject);
   };
 }
 
