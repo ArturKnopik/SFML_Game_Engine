@@ -1,3 +1,3 @@
 #include "Settings.h"
 
-const bool KOD::debugMode = true;
+const bool KOD::debugMode = false;

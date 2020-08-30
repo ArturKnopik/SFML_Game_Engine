@@ -25,6 +25,14 @@ double KOD_API KOD::generateRandomDoubleNumber(double min, double max)
   return uniform_dist(randomEngine);
 }
 
+float KOD_API KOD::generateRandomFloatNumber(float min, float max)
+{
+  static std::random_device randomDevice;
+  static std::default_random_engine randomEngine(randomDevice());
+  std::uniform_real_distribution<float> uniform_dist(min, max);
+  return uniform_dist(randomEngine);
+}
+
 bool KOD_API KOD::collsionDetectionAABBObjByObj(IGameObject_prt left, IGameObject_prt right)
 {
   if (left->getSolid() == nullptr || right->getSolid() == nullptr)

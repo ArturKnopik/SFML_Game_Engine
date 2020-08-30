@@ -29,6 +29,7 @@ namespace KOD
     bool addGameObject(std::shared_ptr<IGameObject> object);
     bool removeGameObject(std::shared_ptr<IGameObject> object);
     bool removeGameObject(size_t uid);
+    //[Type] getObjectFactory();
 
   };
 }

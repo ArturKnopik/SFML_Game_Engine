@@ -3,7 +3,9 @@
 #include "KOD/ResourceManager.h"
 #include "PlayerUpdatable.h"
 #include "KOD/UtilityTools.h"
+#include "KOD/ObjectFactory.h"
 #include <sstream>
+
 
 void TestGameState::printTestMassage()
 {
@@ -17,6 +19,42 @@ void TestGameState::printTestMassage()
   double randomDouble2 = KOD::generateRandomDoubleNumber(10.0, 20.00);
   double randomDouble3 = KOD::generateRandomDoubleNumber(20.0, 30.00);
   std::cout << "random double:\n   " << randomDouble1 << "\n   " << randomDouble2 << "\n   " << randomDouble3 << std::endl;
+}
+
+void TestGameState::checkCollision()
+{
+  for (auto& iterObjA : m_localObjectMap)
+  {
+
+    for (auto& iterObjB : m_localObjectMap)
+    {
+      if (!compareObjectUid(iterObjA.second, iterObjB.second))
+      {
+        auto solidObjectA = iterObjA.second->getSolid();
+        auto solidObjectB = iterObjB.second->getSolid();
+        if (KOD::collsionDetectionAABBObjByObj(iterObjA.second, iterObjB.second))
+        {
+          iterObjA.second->getSolid()->onCollsion();
+          iterObjB.second->getSolid()->onCollsion();
+          KOD::sendDebugInformation("colision: " + std::to_string(iterObjA.second->getUid()) +
+                                    ":" + std::to_string(iterObjB.second->getUid()));
+        }
+      }
+    }
+  }
+}
+
+bool TestGameState::compareObjectUid(std::shared_ptr<KOD::IGameObject> left, std::shared_ptr<KOD::IGameObject> right)
+{
+  if (left == nullptr || right == nullptr)
+  {
+    return false;
+  }
+  if (left->getUid() == right->getUid())
+  {
+    return true;
+  }
+  return false;
 }
 
 TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
@@ -48,11 +86,6 @@ TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 void TestGameState::input()
 {
   IGameState::input();
-  if (collsionDetectionAABBObjByObj(m_player, m_player2))
-  {
-    printf("asdasda\n");
-  }
-
   //TODO::find way to remove dynamic pointer casting
 
   std::shared_ptr<PlayerUpdatable> playerUpdatable;
@@ -115,6 +148,12 @@ void TestGameState::input()
       break;
     }
   }
+}
+
+void TestGameState::update(const int dt)
+{
+  IGameState::update(dt);
+  checkCollision();
 }
 
 

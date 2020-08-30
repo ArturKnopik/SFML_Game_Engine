@@ -1,7 +1,8 @@
-#include <iostream>
 #include "Game.h"
 #include "IGameState.h"
 #include "Settings.h"
+#include "ObjectFactory.h"
+#include <iostream>
 
 KOD::Game::Game()
 {
@@ -27,6 +28,8 @@ void KOD::Game::pushState(std::shared_ptr<IGameState> state)
   if (state)
   {
     m_states.push_back(state);
+    auto & objectFactory = ObjectFactory::getSingleton();
+    objectFactory.switchGameState(state);
   }
 }
 
@@ -35,6 +38,11 @@ void KOD::Game::popState()
   if (!m_states.empty())
   {
     m_states.pop_back();
+    auto& objectFactory = ObjectFactory::getSingleton();
+    if (m_states.empty())
+    {
+      objectFactory.switchGameState(m_states.back());
+    }
   }
 }
 

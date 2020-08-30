@@ -21,11 +21,11 @@ void KOD::IGameState::setAdditionalSpaceToSet(sf::Vector2f additionalSpace)
   m_additionalSpaceToScan = additionalSpace;
 }
 
-bool KOD::IGameState::isObjectInLocalArea(const sf::Vector2f position, const sf::Vector2f additionalSpace, 
-                                          const std::shared_ptr<IGameObject> gameObject)
+bool KOD::IGameState::isObjectInLocalArea(const sf::Vector2f position, const sf::Vector2f additionalSpace,
+  const std::shared_ptr<IGameObject> gameObject)
 {
   sf::Vector2u windowSize = m_game.lock()->m_window->getSize();
-  sf::Vector2f scanAreaPosition = sf::Vector2f{ position.x - (windowSize.x/2) - additionalSpace.x,
+  sf::Vector2f scanAreaPosition = sf::Vector2f{ position.x - (windowSize.x / 2) - additionalSpace.x,
                                    position.y - (windowSize.y / 2) - additionalSpace.y };
 
   sf::Vector2f windowAndOffsetSize = sf::Vector2f{ m_game.lock()->m_window->getSize().x + (2 * additionalSpace.x),
@@ -61,7 +61,6 @@ void KOD::IGameState::draw()
 
 void KOD::IGameState::update(const int dt)
 {
-  m_camera.updateCamera();
   getLocalAreaObjectList(m_camera.getPosition(), m_additionalSpaceToScan);
   sendDebugInformation("## all objects: " + std::to_string(m_globalGameObjectMap.size()) + ", local area: " + std::to_string(m_localObjectMap.size()) + "\n");
   for (auto& obj : m_localObjectMap)
@@ -78,6 +77,7 @@ void KOD::IGameState::update(const int dt)
       objDrawable->getAnimationController().update(dt);
     }
   }
+  m_camera.updateCamera();
   sendDebugInformation(KOD::clearScreen(""));
 }
 
@@ -87,12 +87,12 @@ void KOD::IGameState::input()
 
 bool KOD::IGameState::addGameObject(std::shared_ptr<IGameObject> object)
 {
-  if (object)
+  if (object == nullptr)
   {
-    m_globalGameObjectMap.insert(std::make_pair(object->getUid(), object));
-    return true;
+    return false;
   }
-  return false;
+  m_globalGameObjectMap.insert(std::make_pair(object->getUid(), object));
+  return true;
 }
 
 bool KOD::IGameState::removeGameObject(std::shared_ptr<IGameObject> object)
@@ -108,5 +108,7 @@ bool KOD::IGameState::removeGameObject(std::shared_ptr<IGameObject> object)
 
 bool KOD::IGameState::removeGameObject(size_t uid)
 {
-  return false;
+  auto objectToRemove = m_globalGameObjectMap.find(uid);
+  m_globalGameObjectMap.erase(objectToRemove);
+  return true;
 }
