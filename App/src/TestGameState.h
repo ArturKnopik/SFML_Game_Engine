@@ -15,7 +15,7 @@ public:
   TestGameState() = delete;
   TestGameState(std::shared_ptr<KOD::Game> game);
   virtual void input() override;
-  virtual void update(const int dt) override;
+  virtual void update(const size_t dt) override;
   virtual ~TestGameState();
 };
 

@@ -7,7 +7,7 @@ PlayerUpdatable::PlayerUpdatable(sf::Vector2f& position)
 {
 }
 
-void PlayerUpdatable::update(const int dt)
+void PlayerUpdatable::update(const size_t dt)
 {
 	double moveSpeed = 0.0004;
 	switch (m_verticalDirection)

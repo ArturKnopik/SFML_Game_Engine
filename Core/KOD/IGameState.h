@@ -24,11 +24,13 @@ namespace KOD
     IGameState();
     virtual ~IGameState() = default;
     virtual void draw();
-    virtual void update(const int dt);
+    virtual void update(const size_t dt);
     virtual void input();
     bool addGameObject(std::shared_ptr<IGameObject> object);
     bool removeGameObject(std::shared_ptr<IGameObject> object);
     bool removeGameObject(size_t uid);
+	const size_t getLocalAreaCount() const;
+	const size_t getGlobalAreaCount() const;
     //[Type] getObjectFactory();
 
   };

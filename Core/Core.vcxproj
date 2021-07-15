@@ -28,14 +28,13 @@
     <ClInclude Include="KOD\IDrawable.h" />
     <ClInclude Include="KOD\IGameObject.h" />
     <ClInclude Include="KOD\IGameState.h" />
-    <ClInclude Include="KOD\ObjectFactory.h" />
+    <ClInclude Include="KOD\ObjectManager.h" />
     <ClInclude Include="KOD\Particle.h" />
-    <ClInclude Include="KOD\Solid.h" />
+    <ClInclude Include="KOD\Collider.h" />
     <ClInclude Include="KOD\IUpdatable.h" />
     <ClInclude Include="KOD\KOD_export.h" />
     <ClInclude Include="KOD\ResourceHandler.h" />
     <ClInclude Include="KOD\ResourceManager.h" />
-    <ClInclude Include="KOD\ResoureManager.h" />
     <ClInclude Include="KOD\Settings.h" />
     <ClInclude Include="KOD\UtilityTools.h" />
   </ItemGroup>
@@ -49,9 +48,9 @@
     <ClCompile Include="KOD\IDrawable.cpp" />
     <ClCompile Include="KOD\IGameObiect.cpp" />
     <ClCompile Include="KOD\IGameState.cpp" />
-    <ClCompile Include="KOD\ObjectFactory.cpp" />
+    <ClCompile Include="KOD\ObjectManager.cpp" />
     <ClCompile Include="KOD\Particle.cpp" />
-    <ClCompile Include="KOD\Solid.cpp" />
+    <ClCompile Include="KOD\Collider.cpp" />
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />

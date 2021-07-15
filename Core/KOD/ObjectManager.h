@@ -4,16 +4,16 @@
 
 namespace KOD
 {
-  class KOD_API ObjectFactory
+  class KOD_API ObjectManager
   {
   private:
     std::weak_ptr<IGameState> m_gameState;
     //
   public:
-    ObjectFactory();
+    ObjectManager();
     void switchGameState(std::weak_ptr<IGameState> gameState);
     //ObjectFactory(IGameState * gameState);
-    static ObjectFactory& getSingleton();
+    static ObjectManager& getSingleton();
     bool addGameObject(std::shared_ptr<IGameObject> gameObject);
   };
 }

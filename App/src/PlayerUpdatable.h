@@ -21,7 +21,7 @@ public:
   PlayerUpdatable() = delete;
   PlayerUpdatable(sf::Vector2f& position);
   virtual ~PlayerUpdatable() = default;
-  virtual void update(const int dt) override;
+  virtual void update(const size_t dt) override;
   void setHorizontalDirection(Direction direction);
   void setVerticalDirection(Direction direction);
 };

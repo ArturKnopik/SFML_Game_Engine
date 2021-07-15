@@ -8,8 +8,8 @@ KOD::IGameObject::IGameObject()
 
 }
 
-KOD::IGameObject::IGameObject(std::shared_ptr<IUpdatable> updatable, std::shared_ptr<IDrawable> drawable, std::shared_ptr<Solid> solid)
-  : m_updatable(updatable), m_drawable(drawable), m_solid(solid), m_uid((sm_uid++))
+KOD::IGameObject::IGameObject(std::shared_ptr<IUpdatable> updatable, std::shared_ptr<IDrawable> drawable, std::shared_ptr<Collider> solid)
+  : m_updatable(updatable), m_drawable(drawable), m_collider(solid), m_uid((sm_uid++))
 {
 }
 
@@ -24,12 +24,7 @@ void KOD::IGameObject::setPosition(const int positionX, const int positionY)
   m_position.y = static_cast<float>(positionY);
 }
 
-const sf::Vector2f KOD::IGameObject::getSize()
-{
-  return m_size;
-}
-
-const sf::Vector2f KOD::IGameObject::getPosition()
+const sf::Vector2f KOD::IGameObject::getPosition() const
 {
   return m_position;
 }
@@ -52,16 +47,21 @@ std::shared_ptr<KOD::IDrawable> KOD::IGameObject::getDrawable()
   return nullptr;
 }
 
-std::shared_ptr<KOD::Solid> KOD::IGameObject::getSolid()
+const std::shared_ptr<KOD::Collider> KOD::IGameObject::getCollider() const
 {
-  if (m_solid != nullptr)
+  if (m_collider != nullptr)
   {
-    return m_solid;
+    return m_collider;
   }
   return nullptr;
 }
 
-const size_t KOD::IGameObject::getUid()
+void KOD::IGameObject::onCollision(KOD::IGameObject_prt other)
+{
+
+}
+
+const size_t KOD::IGameObject::getUid() const
 {
   return m_uid;
 }

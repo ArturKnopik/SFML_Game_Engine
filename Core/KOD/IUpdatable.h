@@ -7,7 +7,7 @@ namespace KOD
   {
   public:
     IUpdatable() = default;
-    virtual void update(const int dt) = 0;
+    virtual void update(const size_t dt) = 0;
   };
 }
 

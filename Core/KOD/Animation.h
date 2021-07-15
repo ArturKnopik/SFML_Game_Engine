@@ -11,6 +11,7 @@ namespace KOD
 		std::vector<KOD::Frame> m_frameList;
 	public:
 		Animation();
+		~Animation();
 		void addFrame(KOD::Frame frame);
 		void setTexture(std::shared_ptr<sf::Texture> texture);
 		const std::shared_ptr<sf::Texture> getTexture() const;

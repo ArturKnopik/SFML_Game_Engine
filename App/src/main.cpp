@@ -8,5 +8,5 @@ int main()
   std::shared_ptr<KOD::IGameState> menuState=std::make_shared<TestGameState>(game);
   game->pushState(menuState);
   game->gameLoop();
-  return 1;
+  return 0;
 }

@@ -5,7 +5,7 @@ KOD::AnimationController::AnimationController()
 {
 }
 
-void KOD::AnimationController::update(const int dt)
+void KOD::AnimationController::update(const size_t dt)
 {
   if (m_animationPtr)
   {

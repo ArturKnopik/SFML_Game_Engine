@@ -37,8 +37,8 @@ namespace KOD
     std::unique_ptr<IParticleController> m_particleController;
   public:
     ParticleEmiter(std::unique_ptr<IParticleController> particleController, size_t maxParticleToEmit);
-    virtual void update(const int dt);
-    virtual void draw(std::shared_ptr<sf::RenderWindow> window);
+    virtual void update(const size_t dt);
+    virtual void draw(sf::RenderWindow &window);
   };
 
 

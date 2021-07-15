@@ -18,6 +18,7 @@ namespace KOD {
 
   bool KOD_API collsionDetectionAABBPosByPos(sf::Vector2f posLeft, sf::Vector2f sizeLeft, sf::Vector2f posRight, sf::Vector2f sizeRight);
 
+
   std::string KOD_API clearScreen(std::string cleanInfo);
  
 }

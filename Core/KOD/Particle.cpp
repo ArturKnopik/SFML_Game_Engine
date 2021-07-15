@@ -40,7 +40,7 @@ KOD::ParticleEmiter::ParticleEmiter(std::unique_ptr<IParticleController> particl
 {
 }
 
-void KOD::ParticleEmiter::update(const int dt)
+void KOD::ParticleEmiter::update(const size_t dt)
 {
 
   if (m_particleList.size() < m_maxParticleToEmit - 1)
@@ -61,7 +61,7 @@ void KOD::ParticleEmiter::update(const int dt)
   }
 }
 
-void KOD::ParticleEmiter::draw(std::shared_ptr<sf::RenderWindow> window)
+void KOD::ParticleEmiter::draw(sf::RenderWindow &window)
 {
   for (auto& iter : m_particleList)
   {

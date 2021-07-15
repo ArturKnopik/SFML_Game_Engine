@@ -5,14 +5,16 @@
 #include <unordered_map>
 #include <utility>
 #include <string>
+#include <iostream>
+#include "ResourceHandler.h"
 
 namespace KOD
 {
 	class KOD_API ResourceManager
 	{
 	private:
-		std::unordered_map<std::string, std::shared_ptr<sf::Texture>> m_textureList;
-		//std::unordered_map<std::string, std::shared_ptr<[SOUND OBJ]>> m_soundList; 
+		ResourceHandler<sf::Texture> m_textureHandler;
+
 		ResourceManager();
 		ResourceManager(const ResourceManager&) = delete;
 		ResourceManager(ResourceManager&&) =delete;
@@ -20,11 +22,13 @@ namespace KOD
 		ResourceManager& operator=(ResourceManager&&) =delete;
 	public:
 		static ResourceManager & getInstance();
-		~ResourceManager()=default;
-		const std::unordered_map<std::string, std::shared_ptr<sf::Texture>>& getTextureList() const;
-		void addResource(std::string name, std::shared_ptr<sf::Texture> texture);
+		~ResourceManager() 
+		{
+		};
+		void addResource(std::string name, std::shared_ptr<sf::Texture>);
 		//void addResource(std::shared_ptr< [SOUND OBJ] > sound, std::string name);
 		std::shared_ptr<sf::Texture> getTexture(std::string name);
+		void clean();
 	};
 
 }

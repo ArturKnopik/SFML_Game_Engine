@@ -16,7 +16,7 @@ namespace KOD
 	public:
 		AnimationController();
 		AnimationController(const AnimationController&) = default;
-		void update(const int dt);
+		void update(const size_t dt);
 		void setAnimation(KOD::Animation & animation);
 		void play();
 		void pause();
