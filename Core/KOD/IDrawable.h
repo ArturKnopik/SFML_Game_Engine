@@ -8,14 +8,9 @@ namespace KOD
 {
   class KOD_API IDrawable
   {
-  private: 
-    AnimationController m_animationController;
-    sf::Sprite m_sprite;
-    virtual void updateAnimation(const size_t dt);
   public:
-    virtual void draw(sf::RenderWindow &window);
-	void setPosition(sf::Vector2f position);
-    AnimationController& getAnimationController();
+    IDrawable() = default;
+    virtual void draw(sf::RenderWindow &window) = 0;
   };
 }
 

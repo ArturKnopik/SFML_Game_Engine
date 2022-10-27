@@ -22,11 +22,8 @@ namespace KOD
 		ResourceManager& operator=(ResourceManager&&) =delete;
 	public:
 		static ResourceManager & getInstance();
-		~ResourceManager() 
-		{
-		};
+		~ResourceManager() = default;
 		void addResource(std::string name, std::shared_ptr<sf::Texture>);
-		//void addResource(std::shared_ptr< [SOUND OBJ] > sound, std::string name);
 		std::shared_ptr<sf::Texture> getTexture(std::string name);
 		void clean();
 	};

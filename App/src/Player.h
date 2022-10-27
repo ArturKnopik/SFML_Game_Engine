@@ -1,10 +1,10 @@
 #pragma once
 
-#include <KOD/IGameObject.h>
+#include <KOD/IObject.h>
 #include "KOD/Animation.h"
 
 class Player
-  :public KOD::IGameObject
+  :public KOD::IObject
 {
   KOD::Animation m_animation;
 public:

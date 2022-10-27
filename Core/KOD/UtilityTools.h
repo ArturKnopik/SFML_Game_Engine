@@ -1,10 +1,9 @@
 #pragma once
 #include "KOD_export.h"
 #include "Settings.h"
-#include "KOD/IGameObject.h"
 #include "SFML/System/Vector2.hpp"
 #include <random>
-
+/*
 namespace KOD {
   void KOD_API sendDebugInformation(std::string message);
 
@@ -22,3 +21,4 @@ namespace KOD {
   std::string KOD_API clearScreen(std::string cleanInfo);
  
 }
+*/

@@ -22,14 +22,11 @@
     <ClInclude Include="KOD\Animation.h" />
     <ClInclude Include="KOD\AnimationController.h" />
     <ClInclude Include="KOD\Button.h" />
-    <ClInclude Include="KOD\Camera.h" />
     <ClInclude Include="KOD\Frame.h" />
     <ClInclude Include="KOD\Game.h" />
     <ClInclude Include="KOD\IDrawable.h" />
-    <ClInclude Include="KOD\IGameObject.h" />
-    <ClInclude Include="KOD\IGameState.h" />
-    <ClInclude Include="KOD\ObjectManager.h" />
-    <ClInclude Include="KOD\Particle.h" />
+    <ClInclude Include="KOD\IObject.h" />
+    <ClInclude Include="KOD\IState.h" />
     <ClInclude Include="KOD\Collider.h" />
     <ClInclude Include="KOD\IUpdatable.h" />
     <ClInclude Include="KOD\KOD_export.h" />
@@ -42,21 +39,14 @@
     <ClCompile Include="KOD\Animation.cpp" />
     <ClCompile Include="KOD\AnimationController.cpp" />
     <ClCompile Include="KOD\Button.cpp" />
-    <ClCompile Include="KOD\Camera.cpp" />
     <ClCompile Include="KOD\Frame.cpp" />
     <ClCompile Include="KOD\Game.cpp" />
-    <ClCompile Include="KOD\IDrawable.cpp" />
-    <ClCompile Include="KOD\IGameObiect.cpp" />
-    <ClCompile Include="KOD\IGameState.cpp" />
-    <ClCompile Include="KOD\ObjectManager.cpp" />
-    <ClCompile Include="KOD\Particle.cpp" />
+    <ClCompile Include="KOD\IObiect.cpp" />
+    <ClCompile Include="KOD\IState.cpp" />
     <ClCompile Include="KOD\Collider.cpp" />
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="TODO.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -69,26 +59,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

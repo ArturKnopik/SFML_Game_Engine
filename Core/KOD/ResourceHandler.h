@@ -24,7 +24,6 @@ namespace KOD
 	{
 		if (m_resourceList.find(name) != m_resourceList.end())
 		{
-			//sendDebugInformation("resource named:" + name + " exist on the list!");
 			return;
 		}
 
@@ -38,7 +37,6 @@ namespace KOD
 		auto findResoult = m_resourceList.find(name);
 		if (findResoult == m_resourceList.end())
 		{
-			//sendDebugInformation("resource named:" + name + " don't exist on the list!")
 			return std::shared_ptr<T>();
 		}
 		else

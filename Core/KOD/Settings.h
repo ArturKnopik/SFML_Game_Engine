@@ -12,9 +12,7 @@ namespace KOD {
     unsigned int windowsSizeY = 600;
     Settings() = default;
     Settings(unsigned int sizeX, unsigned int sizeY, std::string appName, unsigned int maxFPX)
-      :windowsSizeX(sizeX), windowsSizeY(sizeY), name(appName), FPS(maxFPX)
-    {
-    }
+        :windowsSizeX(sizeX), windowsSizeY(sizeY), name(appName), FPS(maxFPX) {};
     virtual ~Settings() {};
   };
 

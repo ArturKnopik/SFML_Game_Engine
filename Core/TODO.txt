@@ -1,6 +1,0 @@
-TODO list:
-Implement camera system
-Implement search game objects in local area(player visible space + some space[ability to set distance from a "starting" point]) 
-Implement GUI
-Implement collision detection function
-

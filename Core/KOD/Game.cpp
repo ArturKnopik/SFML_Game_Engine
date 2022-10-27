@@ -1,9 +1,9 @@
 #include "Game.h"
-#include "IGameState.h"
+#include "IState.h"
 #include "Settings.h"
-#include "ObjectManager.h"
-#include <iostream>
 #include "KOD/ResourceManager.h"
+#include <iostream>
+
 KOD::Game::Game()
 {
 	KOD::Settings settings;
@@ -23,13 +23,11 @@ KOD::Game::Game(const KOD::Settings settings)
 	m_window.setFramerateLimit(settings.FPS);
 }
 
-void KOD::Game::pushState(std::shared_ptr<IGameState> state)
+void KOD::Game::pushState(std::shared_ptr<KOD::IState> state)
 {
 	if (state)
 	{
 		m_states.push_back(state);
-		auto& objectFactory = ObjectManager::getSingleton();
-		objectFactory.switchGameState(state);
 	}
 }
 
@@ -38,12 +36,16 @@ void KOD::Game::popState()
 	if (!m_states.empty())
 	{
 		m_states.pop_back();
-		auto& objectFactory = ObjectManager::getSingleton();
-		if (!m_states.empty())
-		{
-			objectFactory.switchGameState(m_states.back());
-		}
 	}
+}
+
+std::shared_ptr<KOD::IState> KOD::Game::currentState()
+{
+	if (!m_states.empty())
+	{
+		return m_states.back();
+	}
+	return nullptr;
 }
 
 KOD::Game::~Game()
@@ -55,15 +57,6 @@ KOD::Game::~Game()
 	KOD::ResourceManager::getInstance().clean();
 }
 
-std::shared_ptr<KOD::IGameState> KOD::Game::currentState()
-{
-	if (!m_states.empty())
-	{
-		return m_states.back();
-	}
-	return nullptr;
-}
-
 void KOD::Game::gameLoop()
 {
 	sf::Clock clock;
@@ -73,9 +66,9 @@ void KOD::Game::gameLoop()
 		size_t dt = static_cast<int>(elapsed.asMicroseconds());
 		if (currentState())
 		{
+			m_window.clear();
 			currentState()->input();
 			currentState()->update(dt);
-			m_window.clear();
 			currentState()->draw();
 			m_window.display();
 		}

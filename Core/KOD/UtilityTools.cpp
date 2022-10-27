@@ -1,6 +1,7 @@
 #include "UtilityTools.h"
 #include "SFML/Graphics/RectangleShape.hpp"
 
+/*
 void KOD_API KOD::sendDebugInformation(std::string message)
 {
 	if (debugMode == true)
@@ -80,3 +81,4 @@ std::string KOD_API KOD::clearScreen(std::string cleanInfo)
 	system(CLEAR);
 	return cleanInfo;
 }
+*/
