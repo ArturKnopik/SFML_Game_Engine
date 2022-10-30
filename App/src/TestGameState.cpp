@@ -63,14 +63,27 @@ TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 	KOD::ResourceManager::getInstance().addResource("playerSpaceShip", texture);
 	
 	m_player = std::make_shared<Player>();
-
-	m_player2 = std::make_shared<Player>();
-	sf::Vector2f playerPosition = { static_cast<float>(game->getRenderWindow().getSize().x / 2),
-									static_cast<float>(game->getRenderWindow().getSize().y) - 150
-	};
-	//m_player->setPosition(playerPosition);
-	// m_camera.bindGameObiect(m_player);
+	addGameObject(m_player);
 	 // END TESTING PIECE OF CODE
+	std::cout << getObjectList().size() << std::endl;
+}
+
+void TestGameState::draw()
+{
+	sf::RenderWindow& rw = m_game.lock()->getRenderWindow();
+	for (auto& it : getObjectList()) 
+	{
+		it.second->draw(rw);
+	}
+}
+
+void TestGameState::update(const size_t dt)
+{
+	g_dt = dt;
+	for (auto& it : getObjectList()) 
+	{
+		it.second->update(dt);
+	}
 }
 
 void TestGameState::input()
@@ -93,11 +106,6 @@ void TestGameState::input()
 		}
 	}
 }
-
-void TestGameState::update(const size_t dt)
-{
-}
-
 
 TestGameState::~TestGameState()
 {

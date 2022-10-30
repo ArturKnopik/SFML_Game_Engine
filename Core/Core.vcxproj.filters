@@ -55,6 +55,12 @@
     <Filter Include="Source Files\Other">
       <UniqueIdentifier>{c145d357-d258-49b0-a0ff-f62e8657ccfc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\World">
+      <UniqueIdentifier>{95b344b9-bdf9-4e58-9d75-ee1fcbe56b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\World">
+      <UniqueIdentifier>{359d014f-7287-4e98-b274-700a7ccd9bd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KOD\IUpdatable.h">
@@ -102,6 +108,18 @@
     <ClInclude Include="KOD\UtilityTools.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="KOD\IWorld.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="KOD\GameObject.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="KOD\World.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="KOD\QuadTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KOD\Collider.cpp">
@@ -136,6 +154,18 @@
     </ClCompile>
     <ClCompile Include="KOD\Settings.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="KOD\IWorld.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="KOD\GameObject.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="KOD\World.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="KOD\QuadTree.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

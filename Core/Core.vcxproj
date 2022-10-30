@@ -24,16 +24,20 @@
     <ClInclude Include="KOD\Button.h" />
     <ClInclude Include="KOD\Frame.h" />
     <ClInclude Include="KOD\Game.h" />
+    <ClInclude Include="KOD\GameObject.h" />
     <ClInclude Include="KOD\IDrawable.h" />
     <ClInclude Include="KOD\IObject.h" />
     <ClInclude Include="KOD\IState.h" />
     <ClInclude Include="KOD\Collider.h" />
     <ClInclude Include="KOD\IUpdatable.h" />
+    <ClInclude Include="KOD\IWorld.h" />
     <ClInclude Include="KOD\KOD_export.h" />
+    <ClInclude Include="KOD\QuadTree.h" />
     <ClInclude Include="KOD\ResourceHandler.h" />
     <ClInclude Include="KOD\ResourceManager.h" />
     <ClInclude Include="KOD\Settings.h" />
     <ClInclude Include="KOD\UtilityTools.h" />
+    <ClInclude Include="KOD\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KOD\Animation.cpp" />
@@ -41,12 +45,16 @@
     <ClCompile Include="KOD\Button.cpp" />
     <ClCompile Include="KOD\Frame.cpp" />
     <ClCompile Include="KOD\Game.cpp" />
+    <ClCompile Include="KOD\GameObject.cpp" />
     <ClCompile Include="KOD\IObiect.cpp" />
     <ClCompile Include="KOD\IState.cpp" />
     <ClCompile Include="KOD\Collider.cpp" />
+    <ClCompile Include="KOD\IWorld.cpp" />
+    <ClCompile Include="KOD\QuadTree.cpp" />
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />
+    <ClCompile Include="KOD\World.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
