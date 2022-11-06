@@ -6,22 +6,21 @@
 
 namespace KOD
 {
+	struct ColiderBox
+	{
+		sf::Vector2f pos = { 0, 0 };
+		sf::Vector2f size = { 0, 0 };
+	};
+
 	class KOD_API Collider
-	{						
-	/*
-	*											box size
-	*												||
-	*							position offset		||
-	*								||				||
-	*								\/				\/
-	*/
-		std::vector<std::pair<sf::Vector2f, sf::Vector2f>> m_collisionBoxList;
+	{		
+		ColiderBox m_coliderBox;
+		std::vector<ColiderBox> m_colliderArray;
 	public:
-		Collider() = delete;
-		Collider(sf::Vector2f position, sf::Vector2f size);
-		Collider(std::vector<std::pair<sf::Vector2f, sf::Vector2f>> colliderBoxList);
-		const std::vector<std::pair<sf::Vector2f, sf::Vector2f>>& getColliders() const;
-		void updatePosition(sf::Vector2f position);
+		Collider();
+		Collider(ColiderBox colliderBox);
+		Collider(std::vector<ColiderBox> colliderBoxList);
+		const std::vector<KOD::ColiderBox>& getColliders() const;
 	};
 }
 

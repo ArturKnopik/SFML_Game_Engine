@@ -1,21 +1,25 @@
 #include "IUpdatable.h"
 #include "Collider.h"
 
-KOD::Collider::Collider(sf::Vector2f position, sf::Vector2f size)
+KOD::Collider::Collider()
 {
-	m_collisionBoxList.push_back(std::make_pair(position, size));
+	m_colliderArray.push_back(ColiderBox());
 }
 
-KOD::Collider::Collider(std::vector<std::pair<sf::Vector2f, sf::Vector2f>> colliderBoxList)
-	:m_collisionBoxList(colliderBoxList)
+
+KOD::Collider::Collider(ColiderBox colliderBox)
+{
+	m_colliderArray.push_back(colliderBox);
+}
+
+KOD::Collider::Collider(std::vector<ColiderBox> colliderBoxList)
+	:m_colliderArray(colliderBoxList)
 {
 }
 
-const std::vector<std::pair<sf::Vector2f, sf::Vector2f>>& KOD::Collider::getColliders() const
+/*
+const std::vector<KOD::ColiderBox>& KOD::Collider::getColliders() const
 {
-	return m_collisionBoxList;
+	return m_colliderArray;
 }
-
-void KOD::Collider::updatePosition(sf::Vector2f position)
-{
-}
+*/
