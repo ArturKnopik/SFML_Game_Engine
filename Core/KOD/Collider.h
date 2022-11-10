@@ -6,21 +6,25 @@
 
 namespace KOD
 {
-	struct ColiderBox
+	struct ColliderBox
 	{
-		sf::Vector2f pos = { 0, 0 };
-		sf::Vector2f size = { 0, 0 };
+		sf::Vector2f m_position = { 0, 0 };
+		sf::Vector2f m_size = { 0, 0 };
 	};
 
 	class KOD_API Collider
-	{		
-		ColiderBox m_coliderBox;
-		std::vector<ColiderBox> m_colliderArray;
+	{
+		ColliderBox m_coliderBox;
+		std::vector<ColliderBox> m_colliderArray;
 	public:
 		Collider();
-		Collider(ColiderBox colliderBox);
-		Collider(std::vector<ColiderBox> colliderBoxList);
-		const std::vector<KOD::ColiderBox>& getColliders() const;
+		Collider(ColliderBox colliderBox);
+		Collider(std::vector<ColliderBox> colliderBoxList);
+		const std::vector<KOD::ColliderBox>& getColliders() const;
+		const ColliderBox getSimpleColider();
+		const std::vector<ColliderBox>& getFullColider();
+		void addColider(ColliderBox collider);
+		virtual void onCollision() = 0;
 	};
 }
 

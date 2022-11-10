@@ -5,13 +5,12 @@
 
 namespace KOD
 {
-
 	template <class TObj>
 	class QuadTree
 	{
 		const size_t m_maxDeph = 20;
-		size_t m_level = 0;
 		const size_t m_maxObjects = 4;
+		size_t m_level = 0;
 		bool m_isSplited = false;
 		sf::Vector2f m_posTopLeft;
 		sf::Vector2f m_size;

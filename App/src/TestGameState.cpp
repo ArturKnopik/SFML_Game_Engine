@@ -51,7 +51,7 @@ bool TestGameState::compareObjectUid(std::shared_ptr<KOD::IGameObject> left, std
 */
 
 TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
-	:IState(game)
+	:IState(game), World(KOD::BoundingBox{})
 {
 	sf::Vector2f extendLocalAreaSize = { 100, 100 };
 	// START: TESTING PIECE OF CODE

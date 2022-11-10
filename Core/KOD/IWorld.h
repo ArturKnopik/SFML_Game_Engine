@@ -14,5 +14,9 @@ namespace KOD
 		virtual void removeGameObject(std::shared_ptr<TObj> obj) = 0;
 		virtual void removeGameObject(size_t uid) = 0;
 		virtual void update(const size_t dt) = 0;
+		IWorld<TObj>& operator=(TObj value)
+		{
+			m_value = value;
+		}
 	};
 }
