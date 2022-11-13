@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header.h" />
     <ClInclude Include="KOD\Animation.h" />
     <ClInclude Include="KOD\AnimationController.h" />
     <ClInclude Include="KOD\Button.h" />
@@ -50,7 +51,6 @@
     <ClCompile Include="KOD\IState.cpp" />
     <ClCompile Include="KOD\Collider.cpp" />
     <ClCompile Include="KOD\IWorld.cpp" />
-    <ClCompile Include="KOD\QuadTree.cpp" />
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />

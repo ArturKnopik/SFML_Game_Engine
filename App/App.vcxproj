@@ -33,6 +33,8 @@
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\PlayerUpdatable.h" />
     <ClInclude Include="src\TestGameState.h" />
+    <ClInclude Include="TestWorld.cpp" />
+    <ClInclude Include="TestWorld.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

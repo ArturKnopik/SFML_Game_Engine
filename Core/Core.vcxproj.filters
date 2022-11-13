@@ -120,6 +120,9 @@
     <ClInclude Include="KOD\QuadTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KOD\Collider.cpp">
@@ -163,9 +166,6 @@
     </ClCompile>
     <ClCompile Include="KOD\World.cpp">
       <Filter>Source Files\World</Filter>
-    </ClCompile>
-    <ClCompile Include="KOD\QuadTree.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

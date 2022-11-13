@@ -51,9 +51,8 @@ bool TestGameState::compareObjectUid(std::shared_ptr<KOD::IGameObject> left, std
 */
 
 TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
-	:IState(game), World(KOD::BoundingBox{})
+	:IState(game), World(KOD::BoundingBox{ {0,0}, {800, 600} })
 {
-	sf::Vector2f extendLocalAreaSize = { 100, 100 };
 	// START: TESTING PIECE OF CODE
 
 	printTestMassage();
@@ -63,9 +62,20 @@ TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 	KOD::ResourceManager::getInstance().addResource("playerSpaceShip", texture);
 	
 	m_player = std::make_shared<Player>();
+	m_player->setPosition({ 100, 100 });
 	addGameObject(m_player);
+	//addGameObject(std::make_shared<Player>());
+	//addGameObject(std::make_shared<Player>());
+	//addGameObject(std::make_shared<Player>());
+	//addGameObject(std::make_shared<Player>());
+	//addGameObject(std::make_shared<Player>());
+	for (auto& obj : getObjectList())
+	{
+	//	m_qTree.addGameObject(obj.second);
+	}
 	 // END TESTING PIECE OF CODE
 	std::cout << getObjectList().size() << std::endl;
+	addGameObject(m_player);
 }
 
 void TestGameState::draw()
@@ -75,13 +85,16 @@ void TestGameState::draw()
 	{
 		it.second->draw(rw);
 	}
+	m_qTree.drawQT(rw);
 }
 
 void TestGameState::update(const size_t dt)
 {
 	g_dt = dt;
+	m_qTree.clear();
 	for (auto& it : getObjectList()) 
 	{
+		m_qTree.addGameObject(it.second);
 		it.second->update(dt);
 	}
 }

@@ -2,6 +2,7 @@
 #include "IUpdatable.h"
 #include "IDrawable.h"
 #include "IObject.h"
+#include "Collider.h"
 
 
 namespace KOD
@@ -11,16 +12,10 @@ namespace KOD
 		bool isCollsionable = false;
 	};
 
-	struct BoundingBox
-	{
-		sf::Vector2f m_position = { 0, 0 };
-		sf::Vector2f m_size = { 0 , 0 };
-	};
-
 	class GameObject
 		:public KOD::IObject, public KOD::IDrawable, public KOD::IUpdatable, public KOD::Collider
 	{
-		BoundingBox m_oundingBox;;
+		BoundingBox m_boundingBox;;
 	protected:
 		GameObjectFlags m_flags;
 	public:
@@ -29,7 +24,7 @@ namespace KOD
 		virtual void draw(sf::RenderWindow& window) override = 0;
 		virtual void update(const size_t dt) override = 0;
 		virtual void onCollision() override {};
-		BoundingBox getBoundingBox();
+		BoundingBox& getBoundingBox() { return m_boundingBox; };
 	};
 }
 

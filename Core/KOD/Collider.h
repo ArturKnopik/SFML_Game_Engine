@@ -12,6 +12,12 @@ namespace KOD
 		sf::Vector2f m_size = { 0, 0 };
 	};
 
+	struct BoundingBox
+	{
+		sf::Vector2f m_position = { 0, 0 };
+		sf::Vector2f m_size = { 10 , 10 };
+	};
+
 	class KOD_API Collider
 	{
 		ColliderBox m_coliderBox;
