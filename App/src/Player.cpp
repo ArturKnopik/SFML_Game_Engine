@@ -37,6 +37,7 @@ void Player::draw(sf::RenderWindow& window)
 
 void Player::update(const size_t dt)
 {
+	this->updateBoundingBox(getPosition(), { 32,32 });
 	input(dt);
 }
 

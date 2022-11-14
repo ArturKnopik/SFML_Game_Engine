@@ -64,7 +64,17 @@ TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 	m_player = std::make_shared<Player>();
 	m_player->setPosition({ 100, 100 });
 	addGameObject(m_player);
-	//addGameObject(std::make_shared<Player>());
+	auto player2 = std::make_shared<Player>();
+	player2->setPosition({200,100});
+	addGameObject(player2);
+	player2 = std::make_shared<Player>();
+	player2->setPosition({100,200});
+	addGameObject(player2);
+	player2 = std::make_shared<Player>();
+	player2->setPosition({ 200,200 });
+	addGameObject(player2);	player2 = std::make_shared<Player>();
+	player2->setPosition({ 150,150 });
+	addGameObject(player2);
 	//addGameObject(std::make_shared<Player>());
 	//addGameObject(std::make_shared<Player>());
 	//addGameObject(std::make_shared<Player>());
@@ -86,12 +96,14 @@ void TestGameState::draw()
 		it.second->draw(rw);
 	}
 	m_qTree.drawQT(rw);
+	std::cout << "DRAW END" << std::endl;
 }
 
 void TestGameState::update(const size_t dt)
 {
 	g_dt = dt;
 	m_qTree.clear();
+	m_player->getFlags();
 	for (auto& it : getObjectList()) 
 	{
 		m_qTree.addGameObject(it.second);

@@ -24,11 +24,8 @@ namespace KOD
 
 		void split()
 		{
-			std::cout << this << " - m_level: " << m_level << std::endl;
-			if (m_level >= m_maxDeph)
-			{
-				return;
-			}
+			//std::cout << " --== SPLIT ==-- " << std::endl;
+			//std::cout << this << " - m_level: " << m_level << std::endl;
 
 			m_isSplited = true;
 			size_t newLevel = m_level + 1;
@@ -36,11 +33,8 @@ namespace KOD
 			sf::Vector2f newSize = { m_size.x / 2, m_size.y / 2 };
 			//QuadTree(sf::Vector2f topLeft, sf::Vector2f size, size_t level = 0);
 			m_topLeftLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f(m_topLeft.x, m_topLeft.y), newSize, newLevel);
-
 			m_topRightLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y }, newSize, newLevel);
-
 			m_bottomLeftLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x, m_topLeft.y + newSize.y }, newSize, newLevel);
-
 			m_bottomRightLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y + newSize.y }, newSize, newLevel);
 
 			for (auto& obj : m_objectLsit)
@@ -57,7 +51,7 @@ namespace KOD
 				{
 					m_bottomLeftLeaf->addGameObject(obj);
 				}
-				if (m_bottomRightLeaf->isOverlapping(obj));
+				if (m_bottomRightLeaf->isOverlapping(obj))
 				{
 					m_bottomRightLeaf->addGameObject(obj);
 				}
@@ -73,15 +67,15 @@ namespace KOD
 			// 100,100 - 30,30
 			bool isOverlapingX = (obj->getBoundingBox().m_position.x + obj->getBoundingBox().m_size.x > m_topLeft.x &&
 				obj->getBoundingBox().m_position.x <= m_topLeft.x + m_size.x);
-			
+
 			bool isOverlapingY = (obj->getBoundingBox().m_position.y + obj->getBoundingBox().m_size.y > m_topLeft.y &&
 				obj->getBoundingBox().m_position.y <= m_topLeft.y + m_size.y);
-			std::cout << " ----------------------------------------------------------" << std::endl;
-			std::cout << "obj pos: " << obj->getBoundingBox().m_position.x << ":" << obj->getBoundingBox().m_position.y << std::endl;
-			std::cout << "obj size: " << obj->getBoundingBox().m_size.x << ":" << obj->getBoundingBox().m_size.y << std::endl;
-			std::cout << "window pos: " << m_topLeft.x << ":" << m_topLeft.y << std::endl;
-			std::cout << "window pos: " << m_size.x << ":" << m_size.y << std::endl;
-			std::cout << isOverlapingX << ":" << isOverlapingY << " === " << (isOverlapingX && isOverlapingY) << std::endl;
+			//std::cout << " ----------------------------------------------------------" << std::endl;
+			//std::cout << "obj pos: " << obj->getBoundingBox().m_position.x << ":" << obj->getBoundingBox().m_position.y << std::endl;
+			//std::cout << "obj size: " << obj->getBoundingBox().m_size.x << ":" << obj->getBoundingBox().m_size.y << std::endl;
+			//std::cout << "window pos: " << m_topLeft.x << ":" << m_topLeft.y << std::endl;
+			//std::cout << "window pos: " << m_size.x << ":" << m_size.y << std::endl;
+			//std::cout << isOverlapingX << ":" << isOverlapingY << " === " << (isOverlapingX && isOverlapingY) << std::endl;
 
 			return isOverlapingX && isOverlapingY;
 		}
@@ -93,14 +87,15 @@ namespace KOD
 		virtual ~QuadTree() = default;
 		void clear()
 		{
+			m_objectLsit.clear();
 			m_topLeftLeaf = nullptr;
 			m_topRightLeaf = nullptr;
 			m_bottomLeftLeaf = nullptr;
 			m_bottomRightLeaf = nullptr;
 		}
-		void addGameObject(std::shared_ptr<TObj> obj)	
+		void addGameObject(std::shared_ptr<TObj> obj)
 		{
-			std::cout << " --== SPLIT ==-- " << std::endl;
+			//std::cout << " --== addGameObject ==-- " << std::endl;
 			if (!obj)
 			{
 				return;
@@ -111,18 +106,14 @@ namespace KOD
 				return;
 			}
 
-			if (m_objectLsit.size() < m_maxObjects || m_level >= m_maxDeph)
+			if (m_objectLsit.size() < m_maxObjects && m_isSplited == false || m_level == m_maxDeph)
 			{
 				m_objectLsit.push_back(obj);
 			}
 			else
 			{
-
-				if (m_isSplited == false)
-				{
-					split();
-					m_objectLsit.clear();
-				}
+				split();
+				m_objectLsit.clear();
 
 				if (m_topLeftLeaf->isOverlapping(obj))
 				{
@@ -189,4 +180,3 @@ namespace KOD
 		}
 	};
 }
-

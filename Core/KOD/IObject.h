@@ -12,10 +12,7 @@
 
 
 namespace KOD
-{
-	class IObject;
-	
-	typedef std::shared_ptr<KOD::IObject> IGameObject_prt;
+{	
 	class KOD_API IObject
 	{
 	private:

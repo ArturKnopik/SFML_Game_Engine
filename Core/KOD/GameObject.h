@@ -21,10 +21,12 @@ namespace KOD
 	public:
 		GameObject() = default;
 		GameObject(GameObjectFlags flags) :m_flags(flags) {};
-		virtual void draw(sf::RenderWindow& window) override = 0;
-		virtual void update(const size_t dt) override = 0;
+		virtual void draw(sf::RenderWindow& window) override {};
+		virtual void update(const size_t dt) override {};
 		virtual void onCollision() override {};
 		BoundingBox& getBoundingBox() { return m_boundingBox; };
+		void updateBoundingBox(sf::Vector2f pos, sf::Vector2f size);
+		BoundingBox& getFlags();
 	};
 }
 

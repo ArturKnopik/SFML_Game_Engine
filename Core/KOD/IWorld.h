@@ -1,5 +1,6 @@
 #include <unordered_map>
 #include <memory>
+#include <KOD/GameObject.h>
 
 namespace KOD
 {

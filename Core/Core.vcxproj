@@ -50,11 +50,9 @@
     <ClCompile Include="KOD\IObiect.cpp" />
     <ClCompile Include="KOD\IState.cpp" />
     <ClCompile Include="KOD\Collider.cpp" />
-    <ClCompile Include="KOD\IWorld.cpp" />
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />
-    <ClCompile Include="KOD\World.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
