@@ -39,7 +39,7 @@ const sf::IntRect& KOD::Animation::getFrame(std::size_t index) const
 	return sf::IntRect();
 }
 
-const double& KOD::Animation::getFrameTime(std::size_t index) const
+const double KOD::Animation::getFrameTime(std::size_t index) const
 {
 	if (index < m_frameList.size() && m_frameList.size()>0)
 	{

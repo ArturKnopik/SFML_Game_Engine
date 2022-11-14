@@ -6,13 +6,13 @@
 
 namespace KOD
 {
-	struct ColliderBox
+	struct KOD_API ColliderBox
 	{
 		sf::Vector2f m_position = { 0, 0 };
 		sf::Vector2f m_size = { 0, 0 };
 	};
 
-	struct BoundingBox
+	struct KOD_API BoundingBox
 	{
 		sf::Vector2f m_position = { 0, 0 };
 		sf::Vector2f m_size = { 10 , 10 };

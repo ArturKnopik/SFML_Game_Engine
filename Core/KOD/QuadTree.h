@@ -10,7 +10,7 @@ namespace KOD
 	template <class TObj>
 	class QuadTree
 	{
-		const size_t m_maxDeph = 20;
+		const size_t m_maxDeph = 10;
 		const size_t m_maxObjects = 4;
 		size_t m_level = 0;
 		bool m_isSplited = false;
@@ -24,9 +24,6 @@ namespace KOD
 
 		void split()
 		{
-			//std::cout << " --== SPLIT ==-- " << std::endl;
-			//std::cout << this << " - m_level: " << m_level << std::endl;
-
 			m_isSplited = true;
 			size_t newLevel = m_level + 1;
 
@@ -36,7 +33,7 @@ namespace KOD
 			m_topRightLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y }, newSize, newLevel);
 			m_bottomLeftLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x, m_topLeft.y + newSize.y }, newSize, newLevel);
 			m_bottomRightLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y + newSize.y }, newSize, newLevel);
-
+			std::cout <<"this: " <<  this << " - = LEVEL = - ||| " << m_level << ", new level = " << newLevel << std::endl;
 			for (auto& obj : m_objectLsit)
 			{
 				if (m_topLeftLeaf->isOverlapping(obj))
@@ -58,25 +55,20 @@ namespace KOD
 			}
 			m_objectLsit.clear();
 		}
+
 		bool isOverlapping(std::shared_ptr<TObj> obj)
 		{
 			if (obj == nullptr)
 			{
 				return false;
 			}
-			// 100,100 - 30,30
+
 			bool isOverlapingX = (obj->getBoundingBox().m_position.x + obj->getBoundingBox().m_size.x > m_topLeft.x &&
 				obj->getBoundingBox().m_position.x <= m_topLeft.x + m_size.x);
 
 			bool isOverlapingY = (obj->getBoundingBox().m_position.y + obj->getBoundingBox().m_size.y > m_topLeft.y &&
 				obj->getBoundingBox().m_position.y <= m_topLeft.y + m_size.y);
-			//std::cout << " ----------------------------------------------------------" << std::endl;
-			//std::cout << "obj pos: " << obj->getBoundingBox().m_position.x << ":" << obj->getBoundingBox().m_position.y << std::endl;
-			//std::cout << "obj size: " << obj->getBoundingBox().m_size.x << ":" << obj->getBoundingBox().m_size.y << std::endl;
-			//std::cout << "window pos: " << m_topLeft.x << ":" << m_topLeft.y << std::endl;
-			//std::cout << "window pos: " << m_size.x << ":" << m_size.y << std::endl;
-			//std::cout << isOverlapingX << ":" << isOverlapingY << " === " << (isOverlapingX && isOverlapingY) << std::endl;
-
+			std::cout << "overlap: " << obj << " :: " << isOverlapingX && isOverlapingY << std::endl;
 			return isOverlapingX && isOverlapingY;
 		}
 
@@ -92,10 +84,10 @@ namespace KOD
 			m_topRightLeaf = nullptr;
 			m_bottomLeftLeaf = nullptr;
 			m_bottomRightLeaf = nullptr;
+			m_isSplited = false;
 		}
 		void addGameObject(std::shared_ptr<TObj> obj)
 		{
-			//std::cout << " --== addGameObject ==-- " << std::endl;
 			if (!obj)
 			{
 				return;
@@ -106,7 +98,7 @@ namespace KOD
 				return;
 			}
 
-			if (m_objectLsit.size() < m_maxObjects && m_isSplited == false || m_level == m_maxDeph)
+			if (m_objectLsit.size() < m_maxObjects && m_isSplited == false && m_isSplited == false || m_level == m_maxDeph)
 			{
 				m_objectLsit.push_back(obj);
 			}
@@ -131,17 +123,12 @@ namespace KOD
 				{
 					m_bottomRightLeaf->addGameObject(obj);
 				}
-
 			}
 		}
 		void drawQT(sf::RenderWindow& window)
 		{
 			if (m_isSplited == true)
 			{
-				m_topLeftLeaf->drawQT(window);
-				m_topRightLeaf->drawQT(window);
-				m_bottomLeftLeaf->drawQT(window);
-				m_bottomRightLeaf->drawQT(window);
 				double x = m_topLeft.x;
 				double y = m_topLeft.y;
 				sf::RectangleShape rectangle;
@@ -150,6 +137,10 @@ namespace KOD
 				rectangle.setFillColor(sf::Color(255, 0, 0, 15));
 				rectangle.setOutlineThickness(1);
 				window.draw(rectangle);
+				m_topLeftLeaf->drawQT(window);
+				m_topRightLeaf->drawQT(window);
+				m_bottomLeftLeaf->drawQT(window);
+				m_bottomRightLeaf->drawQT(window);
 			}
 			else
 			{
@@ -168,7 +159,7 @@ namespace KOD
 					rectangle.setSize(it->getBoundingBox().m_size);
 					rectangle.setOutlineColor(sf::Color::Green);
 					rectangle.setOutlineThickness(1);
-					rectangle.setFillColor(sf::Color(0, 255, 0, 30));
+					rectangle.setFillColor(sf::Color(0, 255, 0, 35));
 					window.draw(rectangle);
 				}
 			}

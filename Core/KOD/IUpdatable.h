@@ -3,7 +3,7 @@
 
 namespace KOD
 {
-  class IUpdatable
+  class KOD_API IUpdatable
   {
   public:
     IUpdatable() = default;

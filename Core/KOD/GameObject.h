@@ -7,12 +7,12 @@
 
 namespace KOD
 {
-	struct GameObjectFlags
+	struct KOD_API GameObjectFlags
 	{
 		bool isCollsionable = false;
 	};
 
-	class GameObject
+	class KOD_API GameObject
 		:public KOD::IObject, public KOD::IDrawable, public KOD::IUpdatable, public KOD::Collider
 	{
 		BoundingBox m_boundingBox;;

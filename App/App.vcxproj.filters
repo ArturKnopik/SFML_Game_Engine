@@ -38,11 +38,5 @@
     <ClInclude Include="src\TestGameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestWorld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

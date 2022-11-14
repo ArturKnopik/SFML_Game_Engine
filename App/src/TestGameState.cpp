@@ -56,58 +56,59 @@ TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 	// START: TESTING PIECE OF CODE
 
 	printTestMassage();
-	
+
 	auto texture = std::make_shared<sf::Texture>();
 	texture->loadFromFile("resource\\playerSpaceShip.png");
 	KOD::ResourceManager::getInstance().addResource("playerSpaceShip", texture);
-	
+
 	m_player = std::make_shared<Player>();
-	m_player->setPosition({ 100, 100 });
+	m_player->setPosition({ 10, 10 });
 	addGameObject(m_player);
 	auto player2 = std::make_shared<Player>();
-	player2->setPosition({200,100});
+	player2->setPosition({ 2, 2 });
 	addGameObject(player2);
 	player2 = std::make_shared<Player>();
-	player2->setPosition({100,200});
+	player2->setPosition({ 5,5 });
 	addGameObject(player2);
 	player2 = std::make_shared<Player>();
-	player2->setPosition({ 200,200 });
-	addGameObject(player2);	player2 = std::make_shared<Player>();
-	player2->setPosition({ 150,150 });
+	player2->setPosition({ 10,10 });
 	addGameObject(player2);
+	player2 = std::make_shared<Player>();
+	player2->setPosition({ 15,15 });
+	addGameObject(player2);
+
 	//addGameObject(std::make_shared<Player>());
 	//addGameObject(std::make_shared<Player>());
 	//addGameObject(std::make_shared<Player>());
 	//addGameObject(std::make_shared<Player>());
-	for (auto& obj : getObjectList())
-	{
-	//	m_qTree.addGameObject(obj.second);
-	}
-	 // END TESTING PIECE OF CODE
+	// 
+	// END TESTING PIECE OF CODE
 	std::cout << getObjectList().size() << std::endl;
 	addGameObject(m_player);
 }
 
 void TestGameState::draw()
 {
+	std::cout << "DRAW" << std::endl;
 	sf::RenderWindow& rw = m_game.lock()->getRenderWindow();
-	for (auto& it : getObjectList()) 
+	for (auto& it : getObjectList())
 	{
 		it.second->draw(rw);
 	}
 	m_qTree.drawQT(rw);
-	std::cout << "DRAW END" << std::endl;
 }
 
 void TestGameState::update(const size_t dt)
 {
 	g_dt = dt;
-	m_qTree.clear();
-	m_player->getFlags();
-	for (auto& it : getObjectList()) 
+
+	m_qTree = KOD::QuadTree<KOD::GameObject>({ 0,0 }, { 800, 600 }, 0);
+	std::cout << "UPDATE" << std::endl;
+	std::cout << getObjectList().size() << std::endl;
+	for (auto& it : getObjectList())
 	{
-		m_qTree.addGameObject(it.second);
 		it.second->update(dt);
+		m_qTree.addGameObject(it.second);
 	}
 }
 

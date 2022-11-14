@@ -2,6 +2,8 @@
 #include "SFML/Window/Keyboard.hpp"
 #include <iostream>
 
+#pragma warning( disable : 4244 ) 
+
 PlayerUpdatable::PlayerUpdatable(sf::Vector2f& position)
   :m_position(position)
 {

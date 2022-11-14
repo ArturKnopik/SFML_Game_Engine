@@ -7,7 +7,6 @@ void Player::input(const size_t dt)
 	auto pos = getPosition();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		std::cout << "UP " << dt << " " << static_cast<float>(dt * 0.001) << std::endl;
 		setPosition({ pos.x, pos.y - static_cast<float>(dt * 0.001) });
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -31,13 +30,13 @@ Player::Player()
 }
 
 void Player::draw(sf::RenderWindow& window)
-{;
+{
 	window.draw(rect);
 }
 
 void Player::update(const size_t dt)
 {
-	this->updateBoundingBox(getPosition(), { 32,32 });
+	updateBoundingBox(getPosition(), { 32,32 });
 	input(dt);
 }
 

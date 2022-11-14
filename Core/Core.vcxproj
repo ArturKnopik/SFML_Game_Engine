@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h" />
     <ClInclude Include="KOD\Animation.h" />
     <ClInclude Include="KOD\AnimationController.h" />
     <ClInclude Include="KOD\Button.h" />
@@ -53,6 +52,7 @@
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />
+    <ClCompile Include="KOD\World.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

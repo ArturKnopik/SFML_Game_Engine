@@ -5,7 +5,7 @@
 namespace KOD
 {
 	template <class TObj>
-	class IWorld
+	class KOD_API IWorld
 	{
 		std::unordered_map<size_t, std::shared_ptr<TObj>> m_objectsList;
 	public:

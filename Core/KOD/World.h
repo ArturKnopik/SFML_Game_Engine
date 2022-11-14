@@ -5,7 +5,7 @@
 
 namespace KOD
 {
-	class World :
+	class KOD_API World :
 		public IWorld<KOD::GameObject>
 	{
 		std::unordered_map<size_t, std::shared_ptr<KOD::GameObject>> m_gameObjects;
