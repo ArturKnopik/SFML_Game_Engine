@@ -1,7 +1,6 @@
 #include "UtilityTools.h"
 #include "SFML/Graphics/RectangleShape.hpp"
 
-/*
 void KOD_API KOD::sendDebugInformation(std::string message)
 {
 	if (debugMode == true)
@@ -34,6 +33,7 @@ float KOD_API KOD::generateRandomFloatNumber(float min, float max)
 	return uniform_dist(randomEngine);
 }
 
+/*
 bool KOD_API KOD::collsionDetectionAABBObjByObj(IGameObject_prt left, IGameObject_prt right)
 {
 	if (left->getCollider() == nullptr || right->getCollider() == nullptr)
@@ -75,7 +75,7 @@ std::string KOD_API KOD::clearScreen(std::string cleanInfo)
 {
 #ifdef _WIN32
 #define CLEAR "cls"
-#else 
+#else
 #define CLEAR "clear"
 #endif
 	system(CLEAR);

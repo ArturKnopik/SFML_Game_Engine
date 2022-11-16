@@ -7,25 +7,25 @@ void Player::input(const size_t dt)
 	auto pos = getPosition();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		setPosition({ pos.x, pos.y - static_cast<float>(dt * 0.001) });
+		setPosition({ pos.x, pos.y - static_cast<float>(dt * 0.0001) });
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		setPosition({ pos.x, pos.y + static_cast<float>(dt * 0.001) });
+		setPosition({ pos.x, pos.y + static_cast<float>(dt * 0.0001) });
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		setPosition({ pos.x - static_cast<float>(dt * 0.001) , pos.y });
+		setPosition({ pos.x - static_cast<float>(dt * 0.0001) , pos.y });
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		setPosition({ pos.x + static_cast<float>(dt * 0.001) , pos.y });
+		setPosition({ pos.x + static_cast<float>(dt * 0.0001) , pos.y });
 	}
 }
 
 Player::Player()
 {
-	rect = sf::RectangleShape(sf::Vector2f(30, 30));
+	rect = sf::RectangleShape(sf::Vector2f({ 10,10 }));
 	rect.setFillColor(sf::Color::Red);
 }
 
@@ -37,7 +37,8 @@ void Player::draw(sf::RenderWindow& window)
 void Player::update(const size_t dt)
 {
 	input(dt);
-	updateBoundingBox(getPosition(), { 32,32 });
+	updateBoundingBox(getPosition(), { 10,10 });
+	//std::cout << getPosition().x << ":" << getPosition().y << std::endl;
 }
 
 void Player::setPosition(sf::Vector2f pos)

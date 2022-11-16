@@ -4,11 +4,12 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include "GameObject.h"
+#include "KOD/UtilityTools.h"
 
 namespace KOD
 {
 	template <class TObj>
-	class QuadTree
+	class QuadTree : std::enable_shared_from_this<QuadTree<TObj>>
 	{
 		const size_t m_maxDeph = 13;
 		const size_t m_maxObjects = 4;
@@ -62,10 +63,10 @@ namespace KOD
 				return false;
 			}
 
-			bool isOverlapingX = (obj->getBoundingBox().m_position.x + obj->getBoundingBox().m_size.x > m_topLeft.x &&
+			bool isOverlapingX = (obj->getBoundingBox().m_position.x + obj->getBoundingBox().m_size.x >= m_topLeft.x &&
 				obj->getBoundingBox().m_position.x <= m_topLeft.x + m_size.x);
 
-			bool isOverlapingY = (obj->getBoundingBox().m_position.y + obj->getBoundingBox().m_size.y > m_topLeft.y &&
+			bool isOverlapingY = (obj->getBoundingBox().m_position.y + obj->getBoundingBox().m_size.y >= m_topLeft.y &&
 				obj->getBoundingBox().m_position.y <= m_topLeft.y + m_size.y);
 			return isOverlapingX && isOverlapingY;
 		}
@@ -106,8 +107,11 @@ namespace KOD
 			}
 			else
 			{
-				split();
-				//m_objectLsit.clear();
+				if (m_isSplited == false)
+				{
+					split();
+				}
+				m_objectLsit.clear();
 				if (m_topLeftLeaf->isOverlapping(obj))
 				{
 					m_topLeftLeaf->addGameObject(obj);
@@ -128,16 +132,15 @@ namespace KOD
 		}
 		void drawQT(sf::RenderWindow& window)
 		{
+			sf::RectangleShape rectangle;
+			rectangle.setPosition(sf::Vector2f(m_topLeft.x, m_topLeft.y));
+			rectangle.setSize(sf::Vector2f(m_size.x, m_size.y));
+			rectangle.setFillColor(sf::Color(255, 0, 0, 15));
+			rectangle.setOutlineThickness(1);
+			window.draw(rectangle);
 			if (m_isSplited == true)
 			{
-				double x = this->m_topLeft.x;
-				double y = this->m_topLeft.y;
-				sf::RectangleShape rectangle;
-				rectangle.setPosition(sf::Vector2f(x, y));
-				rectangle.setSize(sf::Vector2f(m_size.x, m_size.y));
-				rectangle.setFillColor(sf::Color(255, 0, 0, 15));
-				rectangle.setOutlineThickness(1);
-				window.draw(rectangle);
+
 				if (m_topLeftLeaf)
 				{
 					m_topLeftLeaf->drawQT(window);
@@ -164,16 +167,74 @@ namespace KOD
 					rectangle.setSize(it->getBoundingBox().m_size);
 					rectangle.setOutlineColor(sf::Color::Green);
 					rectangle.setOutlineThickness(1);
-					rectangle.setFillColor(sf::Color(0, 255, 0, 35));
+					rectangle.setFillColor(sf::Color(0, 255, 0, 1));
 					window.draw(rectangle);
 				}
 			}
 
 		}
 
+		size_t getObjectCount()
+		{
+			size_t count = 0;
+			if (this->m_isSplited == true)
+			{
+				if (m_topLeftLeaf)
+				{
+					count += m_topLeftLeaf->getObjectCount();
+				}
+				if (m_topRightLeaf)
+				{
+					count += m_topRightLeaf->getObjectCount();
+				}
+				if (m_bottomLeftLeaf)
+				{
+					count += m_bottomLeftLeaf->getObjectCount();
+				}
+				if (m_bottomRightLeaf)
+				{
+					count += m_bottomRightLeaf->getObjectCount();
+				}
+			}
+			else
+			{
+				count += this->m_objectLsit.size();
+			}
+			return count;
+		}
+
 		QuadTree& operator=(const QuadTree<TObj>& rhs)
 		{
 			return *this;
+		}
+
+		std::vector <std::shared_ptr<KOD::QuadTree<TObj>>> getAllActiveNodes()
+		{
+			std::vector< std::shared_ptr<KOD::QuadTree<TObj>>> nodeVector;
+			if (this->m_isSplited == true)
+			{
+				if (m_topLeftLeaf)
+				{
+					KOD::addVectors<std::shared_ptr<KOD::QuadTree<TObj>>>(nodeVector, m_topLeftLeaf->getAllActiveNodes());
+				}
+				if (m_topRightLeaf)
+				{
+					KOD::addVectors<std::shared_ptr<KOD::QuadTree<TObj>>>(nodeVector, m_topRightLeaf->getAllActiveNodes());
+				}
+				if (m_bottomLeftLeaf)
+				{
+					KOD::addVectors<std::shared_ptr<KOD::QuadTree<TObj>>>(nodeVector, m_bottomLeftLeaf->getAllActiveNodes());
+				}
+				if (m_bottomRightLeaf)
+				{
+					KOD::addVectors<std::shared_ptr<KOD::QuadTree<TObj>>>(nodeVector, m_bottomRightLeaf->getAllActiveNodes());
+				}
+			}
+			else
+			{
+				nodeVector.push_back(this->shared_from_this());
+			}
+			return nodeVector;
 		}
 	};
 }
