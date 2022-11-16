@@ -62,7 +62,7 @@ TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 	KOD::ResourceManager::getInstance().addResource("playerSpaceShip", texture);
 
 	m_player = std::make_shared<Player>();
-	m_player->setPosition({ 10, 10 });
+	m_player->setPosition({ 1, 1 });
 	addGameObject(m_player);
 	auto player2 = std::make_shared<Player>();
 	player2->setPosition({ 2, 2 });
@@ -85,30 +85,35 @@ TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 	// END TESTING PIECE OF CODE
 	std::cout << getObjectList().size() << std::endl;
 	addGameObject(m_player);
+	for (auto& it : getObjectList())
+	{
+		m_qTree.addGameObject(it.second);
+		std::cout << "CTOR : " << it.second << std::endl;
+	}
+		std::cout << "CTOR END " << std::endl;
 }
 
 void TestGameState::draw()
 {
-	std::cout << "DRAW" << std::endl;
 	sf::RenderWindow& rw = m_game.lock()->getRenderWindow();
 	for (auto& it : getObjectList())
 	{
 		it.second->draw(rw);
 	}
-	m_qTree.drawQT(rw);
+	//m_qTree.drawQT(rw);
 }
 
 void TestGameState::update(const size_t dt)
 {
 	g_dt = dt;
 
-	m_qTree = KOD::QuadTree<KOD::GameObject>({ 0,0 }, { 800, 600 }, 0);
-	std::cout << "UPDATE" << std::endl;
-	std::cout << getObjectList().size() << std::endl;
+	m_qTree.clear();
+
 	for (auto& it : getObjectList())
 	{
 		it.second->update(dt);
 		m_qTree.addGameObject(it.second);
+		//m_qTree.addGameObject(it.second);
 	}
 }
 

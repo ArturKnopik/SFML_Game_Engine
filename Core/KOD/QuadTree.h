@@ -10,7 +10,7 @@ namespace KOD
 	template <class TObj>
 	class QuadTree
 	{
-		const size_t m_maxDeph = 10;
+		const size_t m_maxDeph = 13;
 		const size_t m_maxObjects = 4;
 		size_t m_level = 0;
 		bool m_isSplited = false;
@@ -33,7 +33,6 @@ namespace KOD
 			m_topRightLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y }, newSize, newLevel);
 			m_bottomLeftLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x, m_topLeft.y + newSize.y }, newSize, newLevel);
 			m_bottomRightLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y + newSize.y }, newSize, newLevel);
-			std::cout <<"this: " <<  this << " - = LEVEL = - ||| " << m_level << ", new level = " << newLevel << std::endl;
 			for (auto& obj : m_objectLsit)
 			{
 				if (m_topLeftLeaf->isOverlapping(obj))
@@ -53,7 +52,7 @@ namespace KOD
 					m_bottomRightLeaf->addGameObject(obj);
 				}
 			}
-			m_objectLsit.clear();
+			//m_objectLsit.clear();
 		}
 
 		bool isOverlapping(std::shared_ptr<TObj> obj)
@@ -68,7 +67,6 @@ namespace KOD
 
 			bool isOverlapingY = (obj->getBoundingBox().m_position.y + obj->getBoundingBox().m_size.y > m_topLeft.y &&
 				obj->getBoundingBox().m_position.y <= m_topLeft.y + m_size.y);
-			std::cout << "overlap: " << obj << " :: " << isOverlapingX && isOverlapingY << std::endl;
 			return isOverlapingX && isOverlapingY;
 		}
 
@@ -80,9 +78,13 @@ namespace KOD
 		void clear()
 		{
 			m_objectLsit.clear();
+			m_topLeftLeaf.reset();
 			m_topLeftLeaf = nullptr;
+			m_topRightLeaf.reset();
 			m_topRightLeaf = nullptr;
+			m_bottomLeftLeaf.reset();
 			m_bottomLeftLeaf = nullptr;
+			m_bottomRightLeaf.reset();
 			m_bottomRightLeaf = nullptr;
 			m_isSplited = false;
 		}
@@ -105,8 +107,7 @@ namespace KOD
 			else
 			{
 				split();
-				m_objectLsit.clear();
-
+				//m_objectLsit.clear();
 				if (m_topLeftLeaf->isOverlapping(obj))
 				{
 					m_topLeftLeaf->addGameObject(obj);
@@ -129,29 +130,33 @@ namespace KOD
 		{
 			if (m_isSplited == true)
 			{
-				double x = m_topLeft.x;
-				double y = m_topLeft.y;
+				double x = this->m_topLeft.x;
+				double y = this->m_topLeft.y;
 				sf::RectangleShape rectangle;
 				rectangle.setPosition(sf::Vector2f(x, y));
 				rectangle.setSize(sf::Vector2f(m_size.x, m_size.y));
 				rectangle.setFillColor(sf::Color(255, 0, 0, 15));
 				rectangle.setOutlineThickness(1);
 				window.draw(rectangle);
-				m_topLeftLeaf->drawQT(window);
-				m_topRightLeaf->drawQT(window);
-				m_bottomLeftLeaf->drawQT(window);
-				m_bottomRightLeaf->drawQT(window);
+				if (m_topLeftLeaf)
+				{
+					m_topLeftLeaf->drawQT(window);
+				}
+				if (m_topLeftLeaf)
+				{
+					m_topRightLeaf->drawQT(window);
+				}
+				if (m_topLeftLeaf)
+				{
+					m_bottomLeftLeaf->drawQT(window);
+				}
+				if (m_topLeftLeaf)
+				{
+					m_bottomRightLeaf->drawQT(window);
+				}
 			}
-			else
+			if (m_isSplited == false)
 			{
-				double x = m_topLeft.x;
-				double y = m_topLeft.y;
-				sf::RectangleShape rectangle;
-				rectangle.setPosition(sf::Vector2f(x, y));
-				rectangle.setSize(m_size);
-				rectangle.setFillColor(sf::Color(255, 0, 0, 15));
-				rectangle.setOutlineThickness(1);
-				window.draw(rectangle);
 				for (auto& it : m_objectLsit)
 				{
 					sf::RectangleShape rectangle;
@@ -163,6 +168,7 @@ namespace KOD
 					window.draw(rectangle);
 				}
 			}
+
 		}
 
 		QuadTree& operator=(const QuadTree<TObj>& rhs)
