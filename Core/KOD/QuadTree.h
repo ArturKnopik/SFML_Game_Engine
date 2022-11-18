@@ -9,7 +9,7 @@
 namespace KOD
 {
 	template <class TObj>
-	class QuadTree : std::enable_shared_from_this<QuadTree<TObj>>
+	class QuadTreeNode : std::enable_shared_from_this<QuadTree<TObj>>
 	{
 		const size_t m_maxDeph = 13;
 		const size_t m_maxObjects = 4;
@@ -18,11 +18,15 @@ namespace KOD
 		sf::Vector2f m_topLeft;
 		sf::Vector2f m_size;
 		std::vector<std::shared_ptr<TObj>> m_objectLsit;
-		std::shared_ptr<QuadTree<TObj>> m_topLeftLeaf = nullptr;
-		std::shared_ptr<QuadTree<TObj>> m_topRightLeaf = nullptr;
-		std::shared_ptr<QuadTree<TObj>> m_bottomLeftLeaf = nullptr;
-		std::shared_ptr<QuadTree<TObj>> m_bottomRightLeaf = nullptr;
-
+		std::shared_ptr<QuadTreeNode<TObj>> m_topLeftLeaf = nullptr;
+		std::shared_ptr<QuadTreeNode<TObj>> m_topRightLeaf = nullptr;
+		std::shared_ptr<QuadTreeNode<TObj>> m_bottomLeftLeaf = nullptr;
+		std::shared_ptr<QuadTreeNode<TObj>> m_bottomRightLeaf = nullptr;
+	public:
+		QuadTreeNode() = delete;
+		QuadTreeNode(sf::Vector2f topLeft, sf::Vector2f size, size_t level = 0)
+			: m_topLeft(topLeft), m_size(size), m_level(level) {}
+		virtual ~QuadTreeNode() = default;
 		void split()
 		{
 			m_isSplited = true;
@@ -30,10 +34,10 @@ namespace KOD
 
 			sf::Vector2f newSize = { m_size.x / 2, m_size.y / 2 };
 			//QuadTree(sf::Vector2f topLeft, sf::Vector2f size, size_t level = 0);
-			m_topLeftLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f(m_topLeft.x, m_topLeft.y), newSize, newLevel);
-			m_topRightLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y }, newSize, newLevel);
-			m_bottomLeftLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x, m_topLeft.y + newSize.y }, newSize, newLevel);
-			m_bottomRightLeaf = std::make_shared < KOD::QuadTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y + newSize.y }, newSize, newLevel);
+			m_topLeftLeaf = std::make_shared < KOD::QuadTreeNode<TObj>>(sf::Vector2f(m_topLeft.x, m_topLeft.y), newSize, newLevel);
+			m_topRightLeaf = std::make_shared < KOD::QuadTreeNode<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y }, newSize, newLevel);
+			m_bottomLeftLeaf = std::make_shared < KOD::QuadTreeNode<TObj>>(sf::Vector2f{ m_topLeft.x, m_topLeft.y + newSize.y }, newSize, newLevel);
+			m_bottomRightLeaf = std::make_shared < KOD::QuaQuadTreeNodedTree<TObj>>(sf::Vector2f{ m_topLeft.x + newSize.x, m_topLeft.y + newSize.y }, newSize, newLevel);
 			for (auto& obj : m_objectLsit)
 			{
 				if (m_topLeftLeaf->isOverlapping(obj))
@@ -70,6 +74,23 @@ namespace KOD
 				obj->getBoundingBox().m_position.y <= m_topLeft.y + m_size.y);
 			return isOverlapingX && isOverlapingY;
 		}
+	};
+
+	template <class TObj>
+	class QuadTree : std::enable_shared_from_this<QuadTree<TObj>>
+	{
+		const size_t m_maxDeph = 13;
+		const size_t m_maxObjects = 4;
+		size_t m_level = 0;
+		bool m_isSplited = false;
+		sf::Vector2f m_topLeft;
+		sf::Vector2f m_size;
+		std::vector<std::shared_ptr<TObj>> m_objectLsit;
+		std::shared_ptr<QuadTreeNode<TObj>> m_topLeftLeaf = nullptr;
+		std::shared_ptr<QuadTreeNode<TObj>> m_topRightLeaf = nullptr;
+		std::shared_ptr<QuadTreeNode<TObj>> m_bottomLeftLeaf = nullptr;
+		std::shared_ptr<QuadTreeNode<TObj>> m_bottomRightLeaf = nullptr;
+
 
 	public:
 		QuadTree() = delete;
@@ -208,6 +229,16 @@ namespace KOD
 			return *this;
 		}
 
+		std::shared_ptr<KOD::QuadTree<TObj>> getAllNodeInArea(KOD::BoundingBox bb)
+		{
+			std::cout << "qtree this: " << this << std::endl;;
+
+			return this->shared_from_this();
+		}
+
+
+
+		/*
 		std::vector <std::shared_ptr<KOD::QuadTree<TObj>>> getAllActiveNodes()
 		{
 			std::vector< std::shared_ptr<KOD::QuadTree<TObj>>> nodeVector;
@@ -232,9 +263,13 @@ namespace KOD
 			}
 			else
 			{
-				nodeVector.push_back(this->shared_from_this());
+				if (m_level != 0)
+				{
+					nodeVector.push_back(this->shared_from_this());
+				}
 			}
 			return nodeVector;
 		}
+		*/
 	};
 }

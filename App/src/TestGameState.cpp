@@ -96,8 +96,9 @@ void TestGameState::update(const size_t dt)
 		it.second->update(dt);
 		m_qTree.addGameObject(it.second);
 	}
+	std::cout << "qtree node addr: " << m_qTree.getAllNodeInArea(KOD::BoundingBox()) << ", ptr addr:" << m_qTree.getAllNodeInArea(KOD::BoundingBox()).get() << std::endl;;
 	std::cout << "qTree size: " << m_qTree.getObjectCount() << std::endl;
-	std::cout << "qTree node count: " << m_qTree.getAllActiveNodes().size() << std::endl;
+	//std::cout << "qTree node count: " << m_qTree.getAllActiveNodes().size() << std::endl;
 }
 
 void TestGameState::input()
