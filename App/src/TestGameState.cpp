@@ -65,13 +65,11 @@ TestGameState::TestGameState(std::shared_ptr<KOD::Game> game)
 	m_player->setPosition({ 1, 1 });
 	addGameObject(m_player);
 
-	
+
 	for (auto& it : getObjectList())
 	{
-		m_qTree.addGameObject(it.second);
-		std::cout << "CTOR : " << it.second << std::endl;
+		m_qTree.addGameObject(it.second);;
 	}
-		std::cout << "CTOR END " << std::endl;
 }
 
 void TestGameState::draw()
@@ -89,16 +87,21 @@ void TestGameState::update(const size_t dt)
 	g_dt = dt;
 
 	m_qTree.clear();
-	std::cout << "gameObjSize: " << getObjectList().size() << std::endl;
 
 	for (auto& it : getObjectList())
 	{
 		it.second->update(dt);
 		m_qTree.addGameObject(it.second);
 	}
-	std::cout << "qtree node addr: " << m_qTree.getAllNodeInArea(KOD::BoundingBox()) << ", ptr addr:" << m_qTree.getAllNodeInArea(KOD::BoundingBox()).get() << std::endl;;
-	std::cout << "qTree size: " << m_qTree.getObjectCount() << std::endl;
-	//std::cout << "qTree node count: " << m_qTree.getAllActiveNodes().size() << std::endl;
+	KOD::BoundingBox bb;
+	bb.m_position = { 1,1 };
+	bb.m_size = { 398,298 };
+	std::cout << "------ ===== Quad Tree tests ===== ------" <<
+		"\n\tgame obj size: " << getObjectList().size() <<
+		"\n\tqTree obj size(all nodes): " << m_qTree.getObjectCount() <<
+		"\n\tqtree all nodes count: " << m_qTree.getAllNodes().size() <<
+		"\n\tqTree node count(from pos: " << bb.m_position.x << ":" << bb.m_position.y << ", size:  " << bb.m_size.x << ":" << bb.m_size.y << "): " << m_qTree.getNodesInArea(bb).size() <<
+		std::endl;
 }
 
 void TestGameState::input()
@@ -120,16 +123,14 @@ void TestGameState::input()
 
 			if (m_event.key.code == sf::Keyboard::R)
 			{
-				// fast quit code
 				m_player = std::make_shared<Player>();
 				m_player->setPosition({ KOD::generateRandomFloatNumber(0,800), KOD::generateRandomFloatNumber(0,600) });
 				addGameObject(m_player);
 			}
 			if (m_event.key.code == sf::Keyboard::W)
 			{
-				// fast quit code
 				m_player = std::make_shared<Player>();
-				m_player->setPosition({10, 10 });
+				m_player->setPosition({ 10, 10 });
 				addGameObject(m_player);
 			}
 			break;
