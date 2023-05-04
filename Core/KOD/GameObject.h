@@ -2,7 +2,7 @@
 #include "IUpdatable.h"
 #include "IDrawable.h"
 #include "IObject.h"
-#include "Collider.h"
+#include "ICollider.h"
 
 
 namespace KOD
@@ -13,7 +13,7 @@ namespace KOD
 	};
 
 	class KOD_API GameObject
-		:public KOD::IObject, public KOD::IDrawable, public KOD::IUpdatable, public KOD::Collider
+		:public KOD::IObject, public KOD::IDrawable, public KOD::IUpdatable, public KOD::ICollider
 	{
 		BoundingBox m_boundingBox;;
 	protected:

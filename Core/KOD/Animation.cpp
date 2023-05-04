@@ -29,7 +29,7 @@ const std::shared_ptr<sf::Texture> KOD::Animation::getTexture() const
 	return nullptr;
 }
 
-const sf::IntRect& KOD::Animation::getFrame(std::size_t index) const
+const sf::IntRect KOD::Animation::getFrame(std::size_t index) const
 {
 
 	if (index < m_frameList.size() && m_frameList.size()>0)

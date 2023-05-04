@@ -28,7 +28,6 @@ namespace KOD
 		}
 
 		m_resourceList.insert(std::make_pair(name, resource));
-		m_resourceList.size();
 	}
 
 	template<typename T>

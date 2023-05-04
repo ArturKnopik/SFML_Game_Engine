@@ -18,19 +18,22 @@ namespace KOD
 		sf::Vector2f m_size = { 10 , 10 };
 	};
 
-	class KOD_API Collider
+	class KOD_API ICollider
 	{
 		ColliderBox m_coliderBox;
 		std::vector<ColliderBox> m_colliderArray;
+		bool m_isCollidable = true;
 	public:
-		Collider();
-		Collider(ColliderBox colliderBox);
-		Collider(std::vector<ColliderBox> colliderBoxList);
+		ICollider();
+		ICollider(ColliderBox colliderBox);
+		ICollider(std::vector<ColliderBox> colliderBoxList);
 		const std::vector<KOD::ColliderBox>& getColliders() const;
+		std::vector<KOD::ColliderBox>& getColliders();
 		const ColliderBox getSimpleColider();
 		const std::vector<ColliderBox>& getFullColider();
 		void addColider(ColliderBox collider);
 		virtual void onCollision() = 0;
+
 	};
 }
 

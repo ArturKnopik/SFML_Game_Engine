@@ -28,7 +28,11 @@
     <ClInclude Include="KOD\IDrawable.h" />
     <ClInclude Include="KOD\IObject.h" />
     <ClInclude Include="KOD\IState.h" />
-    <ClInclude Include="KOD\Collider.h" />
+    <ClInclude Include="KOD\ICollider.h" />
+    <ClInclude Include="KOD\IUIHandler.h" />
+    <ClInclude Include="KOD\IUIHandler.cpp" />
+    <ClInclude Include="KOD\UIElement.h" />
+    <ClInclude Include="KOD\UIElement.cpp" />
     <ClInclude Include="KOD\IUpdatable.h" />
     <ClInclude Include="KOD\IWorld.h" />
     <ClInclude Include="KOD\KOD_export.h" />
@@ -48,7 +52,7 @@
     <ClCompile Include="KOD\GameObject.cpp" />
     <ClCompile Include="KOD\IObiect.cpp" />
     <ClCompile Include="KOD\IState.cpp" />
-    <ClCompile Include="KOD\Collider.cpp" />
+    <ClCompile Include="KOD\ICollider.cpp" />
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />

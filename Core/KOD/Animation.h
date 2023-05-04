@@ -15,7 +15,7 @@ namespace KOD
 		void addFrame(KOD::Frame frame);
 		void setTexture(std::shared_ptr<sf::Texture> texture);
 		const std::shared_ptr<sf::Texture> getTexture() const;
-		const sf::IntRect& getFrame(std::size_t index) const;
+		const sf::IntRect getFrame(std::size_t index) const;
 		const double getFrameTime(std::size_t index) const;
 		std::size_t getSize() const;
 	};

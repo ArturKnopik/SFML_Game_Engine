@@ -72,7 +72,7 @@
     <ClInclude Include="KOD\KOD_export.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KOD\Collider.h">
+    <ClInclude Include="KOD\ICollider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KOD\Game.h">
@@ -120,9 +120,21 @@
     <ClInclude Include="KOD\QuadTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="KOD\IUIHandler.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="KOD\IUIHandler.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="KOD\UIElement.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="KOD\UIElement.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="KOD\Collider.cpp">
+    <ClCompile Include="KOD\ICollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="KOD\Game.cpp">

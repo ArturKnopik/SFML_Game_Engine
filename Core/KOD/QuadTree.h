@@ -11,6 +11,8 @@ namespace KOD
 	template <class TObj>
 	class QuadTreeNode : public std::enable_shared_from_this<QuadTreeNode<TObj>>
 	{
+		static_assert(std::is_base_of<KOD::IObject, TObj>::value, "TObj must derive from KOD::IObject");
+		static_assert(std::is_base_of<KOD::ICollider, TObj>::value, "TObj must derive from KOD::Collider");
 		const size_t m_maxDeph = 13;
 		const size_t m_maxObjects = 4;
 		size_t m_level = 0;
@@ -132,6 +134,49 @@ namespace KOD
 				if (m_bottomRightLeaf->isOverlapping(obj))
 				{
 					m_bottomRightLeaf->addGameObject(obj);
+				}
+			}
+		}
+
+		void removeGameObject(std::shared_ptr<TObj> obj)
+		{
+			if (!obj)
+			{
+				return;
+			}
+
+			if (!isOverlapping(obj))
+			{
+				return;
+			}
+
+			if (m_isSplited == false)
+			{
+				for (const int& it : m_objectLsit)
+				{
+					if (it->getUid() == obj->getUid())
+					{
+
+					}
+				}
+			}
+			else
+			{
+				if (m_topLeftLeaf->isOverlapping(obj))
+				{
+					m_topLeftLeaf->removeGameObject(obj);
+				}
+				if (m_topRightLeaf->isOverlapping(obj))
+				{
+					m_topRightLeaf->removeGameObject(obj);
+				}
+				if (m_bottomLeftLeaf->isOverlapping(obj))
+				{
+					m_bottomLeftLeaf->removeGameObject(obj);
+				}
+				if (m_bottomRightLeaf->isOverlapping(obj))
+				{
+					m_bottomRightLeaf->removeGameObject(obj);
 				}
 			}
 		}

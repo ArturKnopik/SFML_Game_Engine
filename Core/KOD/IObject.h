@@ -2,7 +2,7 @@
 #include "KOD_export.h"
 #include "IUpdatable.h"
 #include "IDrawable.h"
-#include "Collider.h"
+#include "ICollider.h"
 #include "SFML/System/Vector2.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/Graphics/Sprite.hpp"
