@@ -1,23 +1,23 @@
 #pragma once
-#include "KOD_export.h"
 #include "Game.h"
 #include "IObject.h"
+#include "KOD_export.h"
 
-#include <unordered_map>
 #include <stdexcept>
+#include <unordered_map>
 
-namespace KOD
+namespace KOD {
+class KOD_API IState
 {
-  class KOD_API IState {
-  protected:
-    std::weak_ptr<Game> m_game;
-  public:
-    IState() = delete;
-    IState(std::shared_ptr<KOD::Game> game);
-    virtual ~IState() = default;
-    virtual void draw() = 0;
-    virtual void update(const size_t dt) = 0;
-    virtual void input() = 0;
-  };
-}
+protected:
+	std::weak_ptr<Game> m_game;
 
+public:
+	IState() = delete;
+	IState(std::shared_ptr<KOD::Game> game);
+	virtual ~IState() = default;
+	virtual void draw() = 0;
+	virtual void update(const size_t dt) = 0;
+	virtual void input() = 0;
+};
+} // namespace KOD

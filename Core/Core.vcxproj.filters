@@ -120,17 +120,23 @@
     <ClInclude Include="KOD\QuadTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KOD\IUIHandler.h">
+    <ClInclude Include="KOD\UiHandler.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="KOD\IUIHandler.cpp">
+    <ClInclude Include="KOD\UiHandler.cpp">
       <Filter>Source Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="KOD\UIElement.h">
+    <ClInclude Include="KOD\UiElement.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="KOD\UIElement.cpp">
+    <ClInclude Include="KOD\UiElement.cpp">
       <Filter>Source Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="KOD\Layout.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="KOD\DefinesUtil.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="KOD\World.cpp">
       <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="KOD\Layout.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

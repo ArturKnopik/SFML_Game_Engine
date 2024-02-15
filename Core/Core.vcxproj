@@ -22,6 +22,7 @@
     <ClInclude Include="KOD\Animation.h" />
     <ClInclude Include="KOD\AnimationController.h" />
     <ClInclude Include="KOD\Button.h" />
+    <ClInclude Include="KOD\DefinesUtil.h" />
     <ClInclude Include="KOD\Frame.h" />
     <ClInclude Include="KOD\Game.h" />
     <ClInclude Include="KOD\GameObject.h" />
@@ -29,10 +30,11 @@
     <ClInclude Include="KOD\IObject.h" />
     <ClInclude Include="KOD\IState.h" />
     <ClInclude Include="KOD\ICollider.h" />
-    <ClInclude Include="KOD\IUIHandler.h" />
-    <ClInclude Include="KOD\IUIHandler.cpp" />
-    <ClInclude Include="KOD\UIElement.h" />
-    <ClInclude Include="KOD\UIElement.cpp" />
+    <ClInclude Include="KOD\UiHandler.h" />
+    <ClInclude Include="KOD\UiHandler.cpp" />
+    <ClInclude Include="KOD\Layout.h" />
+    <ClInclude Include="KOD\UiElement.h" />
+    <ClInclude Include="KOD\UiElement.cpp" />
     <ClInclude Include="KOD\IUpdatable.h" />
     <ClInclude Include="KOD\IWorld.h" />
     <ClInclude Include="KOD\KOD_export.h" />
@@ -53,6 +55,7 @@
     <ClCompile Include="KOD\IObiect.cpp" />
     <ClCompile Include="KOD\IState.cpp" />
     <ClCompile Include="KOD\ICollider.cpp" />
+    <ClCompile Include="KOD\Layout.cpp" />
     <ClCompile Include="KOD\ResourceManager.cpp" />
     <ClCompile Include="KOD\Settings.cpp" />
     <ClCompile Include="KOD\UtilityTools.cpp" />
@@ -117,6 +120,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir);$(SolutionDir)\Core\src;$(IncludePath)</IncludePath>
+    <IntDir>$(Platform)\$(Configuration)\Core\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -125,6 +129,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir);$(SolutionDir)\Core\src;$(IncludePath)</IncludePath>
+    <IntDir>$(Platform)\$(Configuration)\Core\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -142,12 +147,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);KOD_API_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);KOD_API_EXPORT;KOD_API_EXPORT</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -174,14 +179,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);KOD_API_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);KOD_API_EXPORT;KOD_API_EXPORT</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

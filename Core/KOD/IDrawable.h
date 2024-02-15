@@ -1,16 +1,15 @@
 #pragma once
-#include "KOD_export.h"
 #include "AnimationController.h"
+#include "KOD_export.h"
 #include "SFML/Graphics/RenderWindow.hpp"
+
 #include <memory>
 
-namespace KOD
+namespace KOD {
+class KOD_API IDrawable
 {
-  class KOD_API IDrawable
-  {
-  public:
-    IDrawable() = default;
-    virtual void draw(sf::RenderWindow &window) = 0;
-  };
-}
-
+public:
+	IDrawable() = default;
+	virtual void draw(sf::RenderWindow &window) = 0;
+};
+} // namespace KOD

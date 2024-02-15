@@ -1,15 +1,16 @@
 #pragma once
 
-#include <KOD/IObject.h>
 #include "KOD/Animation.h"
 #include "KOD/GameObject.h"
 #include "SFML/Graphics/RectangleShape.hpp"
 
-class Player
-  :public KOD::GameObject
+#include <KOD/IObject.h>
+
+class Player : public KOD::GameObject
 {
 	sf::RectangleShape rect;
 	void input(const size_t dt);
+
 public:
 	Player();
 	virtual ~Player() = default;
@@ -18,4 +19,3 @@ public:
 	void setPosition(sf::Vector2f pos);
 	sf::Vector2f getPosition();
 };
-
