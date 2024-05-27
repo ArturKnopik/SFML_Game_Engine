@@ -1,0 +1,28 @@
+﻿  Game.cpp
+  GameObject.cpp
+  ICollider.cpp
+  IDrawable.cpp
+  IObiect.cpp
+  IState.cpp
+D:\dev\KOD_GameEngine\Core\IState.h(20,27): warning C4251: 'kod::IState::m_game': class 'std::weak_ptr<kod::Game>' needs to have dll-interface to be used by clients of class 'kod::IState'
+  (compiling source file 'IState.cpp')
+  D:\programy\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(2966,7):
+  see declaration of 'std::weak_ptr<kod::Game>'
+  
+  StateManager.cpp
+D:\dev\KOD_GameEngine\Core\IState.h(20,27): warning C4251: 'kod::IState::m_game': class 'std::weak_ptr<kod::Game>' needs to have dll-interface to be used by clients of class 'kod::IState'
+  (compiling source file 'StateManager.cpp')
+  D:\programy\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(2966,7):
+  see declaration of 'std::weak_ptr<kod::Game>'
+  
+D:\dev\KOD_GameEngine\Core\StateManager.h(15,44): warning C4251: 'kod::StateManager::m_states': class 'std::vector<std::shared_ptr<kod::IState>,std::allocator<std::shared_ptr<kod::IState>>>' needs to have dll-interface to be used by clients of class 'kod::StateManager'
+  (compiling source file 'StateManager.cpp')
+  D:\programy\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(436,7):
+  see declaration of 'std::vector<std::shared_ptr<kod::IState>,std::allocator<std::shared_ptr<kod::IState>>>'
+  
+  World.cpp
+  Generating Code...
+     Creating library D:\dev\KOD_GameEngine\build\Debug\Core.lib and object D:\dev\KOD_GameEngine\build\Debug\Core.exp
+  Core.vcxproj -> D:\dev\KOD_GameEngine\build\Debug\Core.dll
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

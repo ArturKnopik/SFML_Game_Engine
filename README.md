@@ -1,4 +1,4 @@
-# SFML_Game_Engine
+﻿# KOD_GameEngine
 2D Game Engine made on top of SFML
 
 ## Installation
@@ -12,7 +12,7 @@ To compile on Windows, you will need to download and install:
 >vcpkg (package manager)
 
 ## Download the source code
->git clone --recursive https://github.com/krecikondexin/SFML_Game_Engine.git
+TODO
 
 ## Install libraries
 >.\vcpkg install sfml:x64-windows
