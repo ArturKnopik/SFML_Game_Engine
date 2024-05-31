@@ -23,6 +23,7 @@
     <ClInclude Include="export.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Error.h" />
     <ClInclude Include="ICollider.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IObject.h" />
@@ -40,6 +41,9 @@
     <ClCompile Include="IState.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

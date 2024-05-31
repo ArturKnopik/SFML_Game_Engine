@@ -4,29 +4,30 @@
 #include <memory>
 #include <unordered_map>
 #include "GameObject.h"
+#include "Error.h"
 
 namespace kod {
 
-class KOD_API World
+class World
 {
 public:
 
-	World();
+	KOD_API World();
 
-	virtual ~World();
+	KOD_API virtual ~World();
 
-	virtual void addGameObject(std::shared_ptr<kod::GameObject> obj);
+	KOD_API virtual kod::Error addGameObject(std::shared_ptr<kod::GameObject> obj);
 
-	virtual void removeGameObject(std::shared_ptr<kod::GameObject> obj);
+	KOD_API virtual kod::Error removeGameObject(std::shared_ptr<kod::GameObject> obj);
 
-	virtual void removeGameObject(size_t uid);
+	KOD_API virtual kod::Error removeGameObject(size_t uid);
 
-	virtual void update(const size_t dt);
+	KOD_API virtual kod::Error update(const size_t dt);
 
-	std::unordered_map<size_t, std::shared_ptr<kod::GameObject>>& getObjectList();
+	KOD_API std::unordered_map<size_t, std::shared_ptr<kod::GameObject>>& getObjectList();
 
 private:
-	void removaAllObjects();
+	kod::Error removaAllObjects();
 
 	std::unordered_map<size_t, std::shared_ptr<kod::GameObject>> m_gameObjects;
 };

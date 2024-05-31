@@ -1,21 +1,21 @@
-﻿# KOD_GameEngine
+﻿# GameEngine
 2D Game Engine made on top of SFML
 
 ## Installation
 
 To compile on Windows, you will need to download and install:
 
->Git 
+>Git
 >
 >Visual Studio 2019 Community (compiler)
 >
->vcpkg (package manager)
+>Vcpkg (package manager)
 
 ## Download the source code
-TODO
+git clone --recursive https://github.com/krecikondexin/SFML_Game_Engine.git
 
 ## Install libraries
 >.\vcpkg install sfml:x64-windows
 >
->\vcpkg integrate install 
+>\vcpkg integrate install
 

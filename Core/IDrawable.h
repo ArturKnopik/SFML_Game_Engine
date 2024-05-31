@@ -1,15 +1,16 @@
 #pragma once
-#include "export.h"
+#include "Error.h"
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "export.h"
 
 #include <memory>
 
 namespace kod {
 
-class KOD_API IDrawable
+class IDrawable
 {
 public:
-	IDrawable() = default;
-	virtual void draw(sf::RenderWindow &window) = 0;
+	KOD_API IDrawable() = default;
+	KOD_API virtual kod::Error draw(sf::RenderWindow &window) = 0;
 };
-} // namespace KOD
+} // namespace kod

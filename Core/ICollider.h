@@ -4,29 +4,30 @@
 #include "export.h"
 
 #include <vector>
+#include "Error.h"
 
 namespace kod {
 
-struct KOD_API RectBox
+struct RectBox
 {
-	RectBox() = default;
-	RectBox(float x, float y, float width, float height);
+	KOD_API RectBox() = default;
+	KOD_API RectBox(float x, float y, float width, float height);
 	sf::Vector2f m_position = {0, 0};
 	sf::Vector2f m_size = {10, 10};
 };
 
-class KOD_API ICollider
+class ICollider
 {
 public:
-	ICollider();
-	ICollider(RectBox colliderBox);
-	ICollider(std::vector<RectBox> colliderBoxList);
-	const std::vector<kod::RectBox>& getColliders() const;
-	std::vector<kod::RectBox>& getColliders();
-	const RectBox getSimpleColider();
-	const std::vector<RectBox>& getExtendedColider();
-	void addColider(RectBox collider);
-	virtual void onCollision() = 0;
+	KOD_API ICollider();
+	KOD_API ICollider(RectBox colliderBox);
+	KOD_API ICollider(std::vector<RectBox> colliderBoxList);
+	KOD_API const std::vector<kod::RectBox>& getColliders() const;
+	KOD_API std::vector<kod::RectBox>& getColliders();
+	KOD_API const RectBox getSimpleColider();
+	KOD_API const std::vector<RectBox>& getExtendedColider();
+	KOD_API kod::Error addColider(RectBox collider);
+	KOD_API virtual kod::Error onCollision() = 0;
 
 private:
 	RectBox m_coliderBox;

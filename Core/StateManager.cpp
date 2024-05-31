@@ -1,17 +1,20 @@
 #include "StateManager.h"
 
-void kod::StateManager::pushState(std::shared_ptr<kod::IState> state)
+kod::StateManager::StateManager() {}
+
+kod::Error kod::StateManager::pushState(std::shared_ptr<kod::IState> state)
 {
-	if (state) {
-		m_states.push_back(state);
-	}
+	m_states.push_back(state);
+	return Error::OK;
 }
 
-void kod::StateManager::popState()
+kod::Error kod::StateManager::popState()
 {
-	if (!m_states.empty()) {
-		m_states.pop_back();
+	if (m_states.empty()) {
+		return Error::MEMORY;
 	}
+	m_states.pop_back();
+	return Error::OK;
 }
 
 std::shared_ptr<kod::IState> kod::StateManager::currentState()

@@ -1,22 +1,32 @@
 #pragma once
-#include "Game.h"
+#include "Error.h"
+#include "GameObject.h"
+#include "SFML/Window/Event.hpp"
+#include "export.h"
 
 #include <memory>
 #include <unordered_map>
 
 namespace kod {
 
-class KOD_API IState
+class Game;
+
+class IState
 {
 public:
-	IState() = delete;
-	IState(std::shared_ptr<kod::Game> game);
-	virtual ~IState() = default;
-	virtual void draw() = 0;
-	virtual void update(const size_t dt) = 0;
-	virtual void input() = 0;
+	KOD_API IState() = delete;
+	KOD_API IState(Game& game);
+	KOD_API virtual ~IState() = default;
+	KOD_API virtual kod::Error draw() = 0;
+	KOD_API virtual kod::Error update(const size_t dt) = 0;
+	KOD_API virtual kod::Error input(sf::Event& event) = 0;
+	KOD_API kod::Error addGameObject(std::shared_ptr<kod::GameObject> object);
+	KOD_API kod::Error removeGameObject(std::shared_ptr<kod::GameObject> object);
+	KOD_API kod::Error removeGameObject(uint64_t uid);
 
 protected:
-	std::weak_ptr<kod::Game> m_game;
+	Game& m_game;
+	std::unordered_map<uint64_t, std::shared_ptr<kod::GameObject>> m_gameObjects;
 };
-} // namespace KOD
+
+} // namespace kod
