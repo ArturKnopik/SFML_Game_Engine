@@ -1,20 +1,19 @@
+#include "FarmGameState.h"
 #include "game.h"
 
-#include <StateManager.h>
-#include <iostream>
-
-class State : public kod::IState
-{
-public:
-	State(kod ::Game &game) : kod::IState(game) {}
-	kod::Error draw() override { return kod::Error::OK; }
-	kod::Error update(const size_t dt) override { return kod::Error::OK; }
-	kod::Error input(sf::Event &event) override { return kod::Error::OK; }
-};
+#include <Json.h>
 
 int main()
 {
-	auto &game = kod::Game::getInstance();
-	game.pushState(std::make_shared<State>(game));
+#ifdef _DEBUG
+	g_logger.setLogLevel(kod::Logger::LogSeverity::DEBUG);
+#else
+	g_logger.setLogLevel(kod::Logger::LogSeverity::ERROR);
+#endif
+	g_logger.clearLogFile();
+
+	kod::Game game = kod::Game("Test Game");
+	game.pushState(std::make_shared<FarmGameState>(game));
+
 	game.run();
 }

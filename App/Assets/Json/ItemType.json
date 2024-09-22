@@ -1,0 +1,19 @@
+{
+    "ItemTypes" : [
+        {
+            "id": 1,
+            "texture": "ground_grass_1",
+            "isWalkable": true
+        },
+        {
+            "id": 2,
+            "texture": "ground_dirt_1",
+            "isWalkable": true
+        },
+        {
+            "id": 3,
+            "texture": "ground_water_1",
+            "isWalkable": false
+        }
+    ]
+}

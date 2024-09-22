@@ -19,26 +19,39 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Const.h" />
     <ClInclude Include="DefinesUtil.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Error.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="json_fwd.h" />
     <ClInclude Include="ICollider.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IObject.h" />
     <ClInclude Include="IState.h" />
     <ClInclude Include="IUpdatable.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ResourceHandler.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="ICollider.cpp" />
     <ClCompile Include="IDrawable.cpp" />
     <ClCompile Include="IObiect.cpp" />
     <ClCompile Include="IState.cpp" />
+    <ClCompile Include="Json.h" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -71,6 +84,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>

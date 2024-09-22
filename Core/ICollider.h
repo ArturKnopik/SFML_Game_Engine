@@ -4,7 +4,6 @@
 #include "export.h"
 
 #include <vector>
-#include "Error.h"
 
 namespace kod {
 
@@ -26,8 +25,8 @@ public:
 	KOD_API std::vector<kod::RectBox>& getColliders();
 	KOD_API const RectBox getSimpleColider();
 	KOD_API const std::vector<RectBox>& getExtendedColider();
-	KOD_API kod::Error addColider(RectBox collider);
-	KOD_API virtual kod::Error onCollision() = 0;
+	KOD_API void addColider(RectBox collider);
+	KOD_API virtual void onCollision() = 0;
 
 private:
 	RectBox m_coliderBox;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Logger.h"
+#include "ResourceManager.h"
 #include "StateManager.h"
 #include "export.h"
 
@@ -10,29 +12,29 @@ namespace kod {
 class Game
 {
 public:
-	KOD_API static Game& getInstance();
+	KOD_API Game();
+	KOD_API Game(const char* appName);
+	KOD_API ~Game();
 
-	Game(const Game&) = delete;
-	Game(Game&&) = delete;
-	Game& operator=(const Game&) = delete;
-	Game& operator=(Game&&) = delete;
-
-	KOD_API kod::Error pushState(std::shared_ptr<kod::IState> state);
-	KOD_API kod::Error popState();
+	KOD_API void pushState(std::shared_ptr<kod::IState> state);
+	KOD_API void popState();
 	KOD_API std::shared_ptr<kod::IState> currentState();
+
 	KOD_API sf::RenderWindow& getRenderWindow();
-	KOD_API kod::Error run();
-	KOD_API kod::Error stop();
+
+	KOD_API void run();
+	KOD_API void stop();
+	KOD_API ResourceManager& getResourceManager();
 
 private:
-	Game();
-	~Game();
-
-	kod::Error gameLoop();
-	kod::Error handleWindowEvent();
+	void gameLoop();
+	void handleEvents();
 	StateManager m_stateManager;
 	sf::RenderWindow m_window;
 	bool m_isRunning = true;
+	ResourceManager m_resourceManager;
+
+	void cleanup();
 };
 
 } // namespace kod

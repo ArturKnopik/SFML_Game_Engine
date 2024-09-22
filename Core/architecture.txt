@@ -1,0 +1,20 @@
+@startuml
+title KOD Engine Architecture
+
+component Engine {
+    [Logger]
+    [Json]
+    [Game]
+    [ResourceManager]
+    [IState]
+    [StateManager]
+    [GameObject]
+    [World]
+}
+
+[GameObject] -> [World]
+[GameObject] --> [IState]
+[IState] -> [StateManager]
+[StateManager] -> [Game]
+[ResourceManager] -> [Game]
+@enduml

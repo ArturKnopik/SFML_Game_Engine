@@ -16,11 +16,10 @@ const kod::RectBox kod::ICollider::getSimpleColider() { return m_coliderBox; }
 
 const std::vector<kod::RectBox>& kod::ICollider::getExtendedColider() { return m_colliderArray; }
 
-kod::Error kod::ICollider::addColider(kod::RectBox collider)
+void kod::ICollider::addColider(kod::RectBox collider)
 {
 	// TODO: extend change size of m_colliderBox if needed
 	m_colliderArray.push_back(collider);
-	return Error::OK;
 }
 
 kod::RectBox::RectBox(float x, float y, float width, float height)

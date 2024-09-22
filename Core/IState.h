@@ -1,5 +1,4 @@
 #pragma once
-#include "Error.h"
 #include "GameObject.h"
 #include "SFML/Window/Event.hpp"
 #include "export.h"
@@ -17,12 +16,13 @@ public:
 	KOD_API IState() = delete;
 	KOD_API IState(Game& game);
 	KOD_API virtual ~IState() = default;
-	KOD_API virtual kod::Error draw() = 0;
-	KOD_API virtual kod::Error update(const size_t dt) = 0;
-	KOD_API virtual kod::Error input(sf::Event& event) = 0;
-	KOD_API kod::Error addGameObject(std::shared_ptr<kod::GameObject> object);
-	KOD_API kod::Error removeGameObject(std::shared_ptr<kod::GameObject> object);
-	KOD_API kod::Error removeGameObject(uint64_t uid);
+	KOD_API virtual void draw() = 0;
+	KOD_API virtual void update(const size_t dt) = 0;
+	KOD_API virtual void input(sf::Event& event);
+	KOD_API virtual void input();
+	KOD_API void addGameObject(std::shared_ptr<kod::GameObject> object);
+	KOD_API void removeGameObject(std::shared_ptr<kod::GameObject> object);
+	KOD_API void removeGameObject(uint64_t uid);
 
 protected:
 	Game& m_game;

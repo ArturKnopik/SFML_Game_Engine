@@ -13,10 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\SimpleFarm">
+      <UniqueIdentifier>{4a303124-d369-4254-b9f3-e42c69fd865a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SimpleFarm">
+      <UniqueIdentifier>{cb9d5afb-e910-4a9e-b81c-4e7a6f9c0a78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FarmGameState.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
+    </ClCompile>
+    <ClCompile Include="FarmMap.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\ItemType.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleParticle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FarmGameState.h">
+      <Filter>Header Files\SimpleFarm</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\SimpleFarm</Filter>
+    </ClInclude>
+    <ClInclude Include="FarmMap.h">
+      <Filter>Header Files\SimpleFarm</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\SimpleFarm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\ItemType.h">
+      <Filter>Header Files\SimpleFarm</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleParticle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

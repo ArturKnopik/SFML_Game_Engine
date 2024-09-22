@@ -1,5 +1,4 @@
 #pragma once
-#include "Error.h"
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "export.h"
 
@@ -11,6 +10,6 @@ class IDrawable
 {
 public:
 	KOD_API IDrawable() = default;
-	KOD_API virtual kod::Error draw(sf::RenderWindow &window) = 0;
+	KOD_API virtual void draw(sf::RenderWindow &window) = 0;
 };
 } // namespace kod

@@ -15,7 +15,7 @@ To compile on Windows, you will need to download and install:
 git clone --recursive https://github.com/krecikondexin/SFML_Game_Engine.git
 
 ## Install libraries
->.\vcpkg install sfml:x64-windows
+>.\vcpkg install sfml:x64-windows nlohmann-json:x64-windows
 >
 >\vcpkg integrate install
 

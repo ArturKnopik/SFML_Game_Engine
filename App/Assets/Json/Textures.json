@@ -1,0 +1,16 @@
+{
+  "textures": [
+    {
+      "file": "./Assets/Images/terrain.png",
+      "name": "terrain_1",
+      "width": 512,
+      "height": 928
+    },
+    {
+      "file": "./Assets/Images/player.png",
+      "name": "player_1",
+      "width": 384,
+      "height": 256
+    }
+  ]
+}

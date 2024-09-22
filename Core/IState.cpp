@@ -3,24 +3,27 @@
 
 kod::IState::IState(Game& game) : m_game(game) {}
 
-kod::Error kod::IState::addGameObject(std::shared_ptr<kod::GameObject> object)
+void kod::IState::input(sf::Event& event) {}
+
+void kod::IState::input() {}
+
+void kod::IState::addGameObject(std::shared_ptr<kod::GameObject> object)
 {
 	if (!object) {
-		return kod::Error::MEMORY;
+		return;
 	}
 	m_gameObjects.insert({object->getUid(), object});
-	return kod::Error::OK;
 }
 
-kod::Error kod::IState::removeGameObject(std::shared_ptr<kod::GameObject> object)
+void kod::IState::removeGameObject(std::shared_ptr<kod::GameObject> object)
 {
 	if (!object) {
-		return kod::Error::MEMORY;
+		return;
 	}
-	return m_gameObjects.erase(object->getUid()) ? kod::Error::OK : kod::Error::MEMORY;
+	m_gameObjects.erase(object->getUid());
 }
 
-kod::Error kod::IState::removeGameObject(uint64_t uid)
+void kod::IState::removeGameObject(uint64_t uid)
 {
-	return m_gameObjects.erase(uid) ? kod::Error::OK : kod::Error::MEMORY;
+	m_gameObjects.erase(uid);
 }

@@ -1,20 +1,25 @@
 #include "StateManager.h"
 
+#include "Logger.h"
+
 kod::StateManager::StateManager() {}
 
-kod::Error kod::StateManager::pushState(std::shared_ptr<kod::IState> state)
+void kod::StateManager::pushState(std::shared_ptr<kod::IState> state)
 {
+	if (!state) {
+		g_logger.log(kod::Logger::LogSeverity::ERROR, "Invalid state");
+		return;
+	}
 	m_states.push_back(state);
-	return Error::OK;
 }
 
-kod::Error kod::StateManager::popState()
+void kod::StateManager::popState()
 {
 	if (m_states.empty()) {
-		return Error::MEMORY;
+		g_logger.log(kod::Logger::LogSeverity::ERROR, "Can't pop state");
+		return;
 	}
 	m_states.pop_back();
-	return Error::OK;
 }
 
 std::shared_ptr<kod::IState> kod::StateManager::currentState()
@@ -22,5 +27,6 @@ std::shared_ptr<kod::IState> kod::StateManager::currentState()
 	if (!m_states.empty()) {
 		return m_states.back();
 	}
+	g_logger.log(kod::Logger::LogSeverity::ERROR, "Invalid state, returns nullptr");
 	return nullptr;
 }

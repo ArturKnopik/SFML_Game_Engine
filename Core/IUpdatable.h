@@ -7,7 +7,7 @@ class KOD_API IUpdatable
 {
 public:
 	IUpdatable() = default;
-	virtual kod::Error update(const size_t dt) = 0;
+	virtual void update(const size_t dt) = 0;
 };
 
 } // namespace kod

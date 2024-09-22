@@ -1,15 +1,11 @@
 #include "Game.h"
 
 #include "DefinesUtil.h"
+#include "ResourceManager.h"
 
 #include <SFML/System/Clock.hpp>
 #include <iostream>
-
-kod::Game& kod::Game::getInstance()
-{
-	static Game instance;
-	return instance;
-}
+#include "Logger.h"
 
 kod::Game::Game()
 {
@@ -19,76 +15,83 @@ kod::Game::Game()
 	sfmlSettings.antialiasingLevel = 8;
 	sf::Style::None - style without border
 	*/
-	m_window.create(sf::VideoMode(800, 600), "Default app name" /*, sf::Style::Default, sfmlSettings*/);
-	m_window.setFramerateLimit(60);
+	m_window.create(sf::VideoMode(1500, 900), "Default app name" /*, sf::Style::Default, sfmlSettings*/);
+	// m_window.setFramerateLimit(60);
+}
+
+kod::Game::Game(const char* appName)
+{
+	// TODO: hardcoded
+	/*
+	sf::ContextSettings sfmlSettings;
+	sfmlSettings.antialiasingLevel = 8;
+	sf::Style::None - style without border
+	*/
+	m_window.create(sf::VideoMode(1500, 900), appName /*, sf::Style::Default, sfmlSettings*/);
+	// m_window.setFramerateLimit(60);
 }
 
 kod::Game::~Game() {}
 
-kod::Error kod::Game::gameLoop()
+void kod::Game::gameLoop()
 {
-	auto state = currentState();
-	if (!state) {
-		return kod::Error::MEMORY;
+	if (!m_stateManager.currentState()) {
+		m_window.close();
+		g_logger.log(kod::Logger::LogSeverity::ERROR, "There is no State object in the list, stoping!");
+		return;
 	}
 
-	kod::Error err = kod::Error::OK;
-
-	while (err == kod::Error::OK && m_isRunning == true) {
-		sf::Clock clock;
-		while (m_window.isOpen()) {
-			sf::Time elapsed = clock.restart();
-			size_t dt = static_cast<uint64_t>(elapsed.asMicroseconds());
-			if (currentState()) {
-				m_window.clear();
-				err = currentState()->update(dt);
-				GOTO_END_ON_ERROR(err);
-				err = currentState()->draw();
-				GOTO_END_ON_ERROR(err);
-				m_window.display();
-			}
-		}
+	sf::Clock clock;
+	while (m_window.isOpen() && m_isRunning == true) {
+		sf::Time elapsed = clock.restart();
+		size_t dt = static_cast<uint64_t>(elapsed.asMicroseconds());
+		m_window.clear();
+		handleEvents();
+		currentState()->update(dt);
+		currentState()->draw();
+		m_window.display();
 	}
-end:
-	return err;
+
+	cleanup();
 }
 
-kod::Error kod::Game::handleWindowEvent()
+void kod::Game::handleEvents()
 {
-	kod::Error err = kod::Error::OK;
 	sf::Event evt;
 	while (m_window.pollEvent(evt)) {
-		std::cout << evt.type << std::endl;
 		switch (evt.type) {
 			case sf::Event::Closed:
 				m_window.close();
 				m_isRunning = false;
 				break;
 		}
-		err = currentState()->draw();
-		GOTO_END_ON_ERROR(err);
+
+		currentState()->input(evt);
 	}
-end:
-	return err;
+	currentState()->input();
 }
 
-KOD_API kod::Error kod::Game::pushState(std::shared_ptr<kod::IState> state) { return m_stateManager.pushState(state); }
+KOD_API void kod::Game::pushState(std::shared_ptr<kod::IState> state) { m_stateManager.pushState(state); }
 
-KOD_API kod::Error kod::Game::popState() { return m_stateManager.popState(); }
+KOD_API void kod::Game::popState() { return m_stateManager.popState(); }
 
 KOD_API std::shared_ptr<kod::IState> kod::Game::currentState() { return m_stateManager.currentState(); }
 
 sf::RenderWindow& kod::Game::getRenderWindow() { return m_window; }
 
-kod::Error kod::Game::run()
+void kod::Game::run()
 {
 	m_isRunning = true;
-
-	return gameLoop();
+	gameLoop();
 }
 
-kod::Error kod::Game::stop()
+void kod::Game::stop() { m_isRunning = false; }
+
+kod::ResourceManager& kod::Game::getResourceManager() { return m_resourceManager; }
+
+void kod::Game::cleanup()
 {
-	m_isRunning = false;
-	return kod::Error::OK;
+	if (m_window.isOpen()) {
+		m_window.close();
+	}
 }
