@@ -3,7 +3,7 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
@@ -13,29 +13,53 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\SimpleFarm">
+      <UniqueIdentifier>{4a303124-d369-4254-b9f3-e42c69fd865a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SimpleFarm">
+      <UniqueIdentifier>{cb9d5afb-e910-4a9e-b81c-4e7a6f9c0a78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="FarmGameState.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
     </ClCompile>
-    <ClCompile Include="src\PlayerUpdatable.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
     </ClCompile>
-    <ClCompile Include="src\TestGameState.cpp">
+    <ClCompile Include="FarmMap.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\ItemType.cpp">
+      <Filter>Source Files\SimpleFarm</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleParticle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Player.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FarmGameState.h">
+      <Filter>Header Files\SimpleFarm</Filter>
     </ClInclude>
-    <ClInclude Include="src\PlayerUpdatable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\SimpleFarm</Filter>
     </ClInclude>
-    <ClInclude Include="src\TestGameState.h">
+    <ClInclude Include="FarmMap.h">
+      <Filter>Header Files\SimpleFarm</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\SimpleFarm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\ItemType.h">
+      <Filter>Header Files\SimpleFarm</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleParticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

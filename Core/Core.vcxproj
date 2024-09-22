@@ -19,64 +19,61 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="KOD\Animation.h" />
-    <ClInclude Include="KOD\AnimationController.h" />
-    <ClInclude Include="KOD\Button.h" />
-    <ClInclude Include="KOD\DefinesUtil.h" />
-    <ClInclude Include="KOD\Frame.h" />
-    <ClInclude Include="KOD\Game.h" />
-    <ClInclude Include="KOD\GameObject.h" />
-    <ClInclude Include="KOD\IDrawable.h" />
-    <ClInclude Include="KOD\IObject.h" />
-    <ClInclude Include="KOD\IState.h" />
-    <ClInclude Include="KOD\ICollider.h" />
-    <ClInclude Include="KOD\UiHandler.h" />
-    <ClInclude Include="KOD\UiHandler.cpp" />
-    <ClInclude Include="KOD\Layout.h" />
-    <ClInclude Include="KOD\UiElement.h" />
-    <ClInclude Include="KOD\UiElement.cpp" />
-    <ClInclude Include="KOD\IUpdatable.h" />
-    <ClInclude Include="KOD\IWorld.h" />
-    <ClInclude Include="KOD\KOD_export.h" />
-    <ClInclude Include="KOD\QuadTree.h" />
-    <ClInclude Include="KOD\ResourceHandler.h" />
-    <ClInclude Include="KOD\ResourceManager.h" />
-    <ClInclude Include="KOD\Settings.h" />
-    <ClInclude Include="KOD\UtilityTools.h" />
-    <ClInclude Include="KOD\World.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Const.h" />
+    <ClInclude Include="DefinesUtil.h" />
+    <ClInclude Include="export.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="json_fwd.h" />
+    <ClInclude Include="ICollider.h" />
+    <ClInclude Include="IDrawable.h" />
+    <ClInclude Include="IObject.h" />
+    <ClInclude Include="IState.h" />
+    <ClInclude Include="IUpdatable.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ResourceHandler.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="StateManager.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="KOD\Animation.cpp" />
-    <ClCompile Include="KOD\AnimationController.cpp" />
-    <ClCompile Include="KOD\Button.cpp" />
-    <ClCompile Include="KOD\Frame.cpp" />
-    <ClCompile Include="KOD\Game.cpp" />
-    <ClCompile Include="KOD\GameObject.cpp" />
-    <ClCompile Include="KOD\IObiect.cpp" />
-    <ClCompile Include="KOD\IState.cpp" />
-    <ClCompile Include="KOD\ICollider.cpp" />
-    <ClCompile Include="KOD\Layout.cpp" />
-    <ClCompile Include="KOD\ResourceManager.cpp" />
-    <ClCompile Include="KOD\Settings.cpp" />
-    <ClCompile Include="KOD\UtilityTools.cpp" />
-    <ClCompile Include="KOD\World.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="ICollider.cpp" />
+    <ClCompile Include="IDrawable.cpp" />
+    <ClCompile Include="IObiect.cpp" />
+    <ClCompile Include="IState.cpp" />
+    <ClCompile Include="Json.h" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{8D8D2E14-E4C8-451F-9C1D-C04A3A4229FC}</ProjectGuid>
-    <RootNamespace>Project1</RootNamespace>
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{47f5a963-2df9-4842-bd57-6a8c9333de83}</ProjectGuid>
+    <RootNamespace>Core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Core</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -87,6 +84,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -113,46 +111,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir)\Core\src;$(IncludePath)</IncludePath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir)\Core\src;$(IncludePath)</IncludePath>
-    <IntDir>$(Platform)\$(Configuration)\Core\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir)\Core\src;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir)\Core\src;$(IncludePath)</IncludePath>
-    <IntDir>$(Platform)\$(Configuration)\Core\</IntDir>
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);KOD_API_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);KOD_API_EXPORT;KOD_API_EXPORT</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,10 +135,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);KOD_API_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -177,15 +145,27 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>KOD_EXPORT</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);KOD_API_EXPORT;KOD_API_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>KOD_EXPORT</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
