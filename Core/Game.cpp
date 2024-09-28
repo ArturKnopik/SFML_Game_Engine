@@ -37,7 +37,7 @@ void kod::Game::gameLoop()
 {
 	if (!m_stateManager.currentState()) {
 		m_window.close();
-		g_logger.log(kod::Logger::LogSeverity::ERROR, "There is no State object in the list, stoping!");
+		g_logger.log(kod::Logger::LogSeverity::ERROR, "There is no state object in the list, stoping!");
 		return;
 	}
 
@@ -48,7 +48,9 @@ void kod::Game::gameLoop()
 		m_window.clear();
 		handleEvents();
 		currentState()->update(dt);
+		currentState()->updateGui(dt);
 		currentState()->draw();
+		currentState()->drawGui();
 		m_window.display();
 	}
 
@@ -67,6 +69,7 @@ void kod::Game::handleEvents()
 		}
 
 		currentState()->input(evt);
+		currentState()->inputGui(evt);
 	}
 	currentState()->input();
 }

@@ -142,13 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Core\ItemType.cpp" />
-    <ClCompile Include="FarmGameState.cpp" />
-    <ClCompile Include="FarmMap.cpp" />
+    <ClCompile Include="TestState.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="SampleParticle.cpp" />
-    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.vcxproj">
@@ -156,12 +152,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Core\ItemType.h" />
-    <ClInclude Include="FarmGameState.h" />
-    <ClInclude Include="FarmMap.h" />
-    <ClInclude Include="Map.h" />
+    <ClInclude Include="TestState.h" />
     <ClInclude Include="SampleParticle.h" />
-    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

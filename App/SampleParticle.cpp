@@ -47,7 +47,7 @@ void SampleParticle::update(size_t dt)
 	setPosition(position);
 	m_rect.setPosition(position);
 
-	float lifeRatio = static_cast<float>(getCurrentLifeTime()) / static_cast<float>(getMaxLifeTime()) * 100 * 2.5;
+	float lifeRatio = static_cast<float>(getCurrentLifeTime()) / static_cast<float>(getMaxLifeTime()) * 100.f * 2.5f;
 	int r = static_cast<int>(255);
 	int g = static_cast<int>(lifeRatio);
 	m_rect.setFillColor(sf::Color(r, g, 0, 255));
