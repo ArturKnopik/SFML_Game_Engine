@@ -50,3 +50,13 @@ void kod::Gui::addElement(std::shared_ptr<Widget> widget) { m_uiElements.emplace
 void kod::Gui::removeElement(std::shared_ptr<kod::Widget> widget) { m_uiElements.erase(widget->getUid()); }
 
 void kod::Gui::removeElement(size_t uid) { m_uiElements.erase(uid); }
+
+std::shared_ptr<kod::Widget> kod::Gui::getElement(size_t id) { 
+	for (auto& uiElement : m_uiElements) {
+		if (uiElement.second->getUid() == id)
+		{
+			return uiElement.second;
+		}
+	}
+	return nullptr;
+}

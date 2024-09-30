@@ -27,7 +27,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GUI.h" />
-    <ClInclude Include="json_fwd.h" />
     <ClInclude Include="ICollider.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IObject.h" />
@@ -38,7 +37,11 @@
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ResourceHandler.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Sheaduler.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="TextField.h" />
+    <ClInclude Include="ThreadHolderBase.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -56,7 +59,10 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Sheaduler.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TextField.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>

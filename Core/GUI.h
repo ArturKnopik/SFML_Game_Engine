@@ -11,7 +11,7 @@ class Widget
 {
 public:
 	KOD_API Widget();
-	KOD_API ~Widget();
+	KOD_API virtual ~Widget();
 	KOD_API virtual void draw(sf::RenderWindow& window);
 	KOD_API virtual void update(size_t dt);
 	KOD_API virtual void handleEvent(sf::Event& event);
@@ -41,6 +41,7 @@ public:
 	KOD_API void addElement(std::shared_ptr<kod::Widget> widget);
 	KOD_API void removeElement(std::shared_ptr<kod::Widget> widget);
 	KOD_API void removeElement(size_t uid);
+	KOD_API std::shared_ptr<kod::Widget> getElement(size_t id);
 
 private:
 	std::unordered_map<size_t, std::shared_ptr<kod::Widget>> m_uiElements;

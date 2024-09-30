@@ -14,6 +14,6 @@ int main()
 
 	kod::Game game = kod::Game("Test Game");
 	game.pushState(std::make_shared<TestState>(game));
-
 	game.run();
+	game.stop();
 }

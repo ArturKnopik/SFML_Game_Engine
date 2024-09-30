@@ -5,17 +5,21 @@
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <TextField.h>
+#include <memory>
 #include <random>
 #include <string_view>
 
 TestState::TestState(kod::Game& game) : IState(game)
 {
+	// particle
 	m_particleEmiter = kod::ParticleEmiter<SampleParticle>(10000);
 	m_particleEmiter.setTimeBetweenParticleSpawn(200000);
 	m_particleEmiter.setTimeBetweenParticleSpawn(5000);
 	m_particleEmiter.maxSpawnedParticleAtOnce(10);
 	m_particleEmiter.setPosition({750, 700});
 
+	// gui
 	auto font = sf::Font();
 	font.loadFromFile("./Assets/Fonts/Arial.ttf");
 
@@ -24,15 +28,27 @@ TestState::TestState(kod::Game& game) : IState(game)
 	button->setPosition({100, 100});
 	button->setSize({50, 20});
 	button->setOutlineColorOnHover(sf::Color::Red);
-	kod::ButtonCb buttonCb = [this]() {
+
+	auto textField = std::make_shared<kod::TextField>();
+	textField->setFont(font);
+	textField->setTextColor(sf::Color::Black);
+	textField->setFontSize(20);
+	textField->setPosition({300, 100});
+	auto labelId = textField->getUid();
+	addGuiElement(textField);
+
+	kod::ButtonCb buttonCb = [this, button, labelId]() {
 		std::random_device rd;
 		std::mt19937 gen(rd());
 		std::uniform_real_distribution<float> x(300, 1200.f);
 		std::uniform_real_distribution<float> y(600.f, 850.f);
 		m_particleEmiter.setPosition({x(gen), y(gen)});
-		std::cout << "Button was clicked!" << std::endl;
-		
+		auto textField = std::dynamic_pointer_cast<kod::TextField>(m_gui.getElement(labelId));
+
+		button->setString(textField->getString());
+		LOG_I("Button click event");
 	};
+
 	button->setCallback(buttonCb);
 	addGuiElement(button);
 
@@ -42,6 +58,19 @@ TestState::TestState(kod::Game& game) : IState(game)
 	label->setTextColor(sf::Color::Yellow);
 	addGuiElement(label);
 
+	// sheduler
+	kod::TaskFunc task1 = [this]() {
+		static std::random_device rd;
+		static std::mt19937 gen(rd());
+		static std::uniform_real_distribution<float> x(300, 1200.f);
+		static std::uniform_real_distribution<float> y(600.f, 850.f);
+		m_particleEmiter.setPosition({x(gen), y(gen)});
+		LOG_I("Sheduled task executed;");
+	};
+
+	auto taskId = m_game.getSheduler().addSheaduledTask(task1, 100, true);
+
+	// other
 	loadResources();
 }
 
@@ -83,10 +112,9 @@ void TestState::update(const size_t dt)
 
 	m_game.getRenderWindow().setTitle("FPS: " + std::to_string(static_cast<size_t>(1.0 / elapsed)) +
 	                                  ", particles: " + std::to_string(m_particleEmiter.getParticleCount()));
-
 }
 
-void TestState::input(sf::Event& event) { }
+void TestState::input(sf::Event& event) {}
 
 void TestState::loadResources()
 {

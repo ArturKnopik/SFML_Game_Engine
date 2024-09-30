@@ -23,15 +23,16 @@ public:
 	KOD_API virtual void handleEvent(sf::Event& event) override;
 	KOD_API virtual void setCallback(ButtonCb callback);
 	KOD_API virtual void onClick();
-	KOD_API void setPosition(sf::Vector2f posiition);
-	KOD_API void setSize(sf::Vector2f size);
-	KOD_API void setColor(sf::Color color);
-	KOD_API void setOutlineColor(sf::Color color);
-	KOD_API void setOutlineColorOnHover(sf::Color color);
+	KOD_API virtual void setPosition(sf::Vector2f posiition);
+	KOD_API virtual void setSize(sf::Vector2f size);
+	KOD_API virtual void setColor(sf::Color color);
+	KOD_API virtual void setOutlineColor(sf::Color color);
+	KOD_API virtual void setOutlineColorOnHover(sf::Color color);
+	KOD_API virtual void setString(const std::string& text) override;
 
 private:
 	void updateTextPosition();
-	sf::RectangleShape m_rect;
+	sf::RectangleShape m_background;
 	sf::Color m_outlineColor = sf::Color(125, 125, 125, 255);
 	sf::Color m_outlineColorOnHover = sf::Color::Black;
 	ButtonCb m_callback;

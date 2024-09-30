@@ -18,6 +18,12 @@ void kod::Label::draw(sf::RenderWindow& window) { window.draw(m_text); }
 
 void kod::Label::setString(const std::string& text) { m_text.setString(text); }
 
+const char* kod::Label::getString()
+{
+	m_cachedAnsiString = m_text.getString().toAnsiString();
+	return m_cachedAnsiString.c_str();
+}
+
 void kod::Label::setFont(sf::Font font)
 {
 	m_font = font;
@@ -40,6 +46,6 @@ sf::Vector2f kod::Label::getPosition() { return m_text.getGlobalBounds().getPosi
 
 sf::Vector2f kod::Label::getSize() { return m_text.getGlobalBounds().getSize(); }
 
-void kod::Label::setFontSize(size_t size) { m_text.setCharacterSize(size); }
+void kod::Label::setFontSize(unsigned int size) { m_text.setCharacterSize(size); }
 
 void kod::Label::setTextColor(sf::Color color) { m_text.setFillColor(color); }
