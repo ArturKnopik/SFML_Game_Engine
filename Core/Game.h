@@ -4,6 +4,7 @@
 #include "ResourceManager.h"
 #include "StateManager.h"
 #include "export.h"
+#include "Sheaduler.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -24,7 +25,9 @@ public:
 
 	KOD_API void run();
 	KOD_API void stop();
+
 	KOD_API ResourceManager& getResourceManager();
+	KOD_API kod::Scheduler& getSheduler();
 
 private:
 	void gameLoop();
@@ -33,6 +36,7 @@ private:
 	sf::RenderWindow m_window;
 	bool m_isRunning = true;
 	ResourceManager m_resourceManager;
+	kod::Scheduler m_sheduler;
 
 	void cleanup();
 };

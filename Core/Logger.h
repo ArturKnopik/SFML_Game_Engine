@@ -67,3 +67,9 @@ private:
 } // namespace kod
 
 KOD_API extern kod::Logger g_logger;
+
+#define LOG_D(message) g_logger.log(kod::Logger::LogSeverity::DEBUG, message)
+#define LOG_I(message) g_logger.log(kod::Logger::LogSeverity::INFO, message)
+#define LOG_W(message) g_logger.log(kod::Logger::LogSeverity::WARNING, message)
+#define LOG_E(message) g_logger.log(kod::Logger::LogSeverity::ERROR, message)
+#define LOG_F(message) g_logger.log(kod::Logger::LogSeverity::FATAL, message)

@@ -20,27 +20,33 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Const.h" />
     <ClInclude Include="DefinesUtil.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GUI.h" />
-    <ClInclude Include="json_fwd.h" />
     <ClInclude Include="ICollider.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IObject.h" />
     <ClInclude Include="IState.h" />
     <ClInclude Include="IUpdatable.h" />
+    <ClInclude Include="Label.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ResourceHandler.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Sheaduler.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="TextField.h" />
+    <ClInclude Include="ThreadHolderBase.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GUI.cpp" />
@@ -49,10 +55,14 @@
     <ClCompile Include="IObiect.cpp" />
     <ClCompile Include="IState.cpp" />
     <ClCompile Include="Json.h" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Sheaduler.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TextField.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-#include "FarmGameState.h"
+#include "TestState.h"
 #include "game.h"
 
 #include <Json.h>
@@ -13,7 +13,7 @@ int main()
 	g_logger.clearLogFile();
 
 	kod::Game game = kod::Game("Test Game");
-	game.pushState(std::make_shared<FarmGameState>(game));
-
+	game.pushState(std::make_shared<TestState>(game));
 	game.run();
+	game.stop();
 }
