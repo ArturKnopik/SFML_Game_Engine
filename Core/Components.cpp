@@ -1,3 +1,3 @@
 #include "Components.h"
 
-kod::ecs::TypeUid g_componentCounter = 0;
+kod::ecs::TypeUid kod::ecs::g_componentCounter = 0;

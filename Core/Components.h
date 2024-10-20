@@ -43,7 +43,10 @@ private:
 
 template <typename T>
 inline ComponentsArray<T>::ComponentsArray()
-{}
+{
+	//to set valid id
+	getComponentId<T>();
+}
 
 template <typename T>
 inline T& ComponentsArray<T>::getData(kod::ecs::Entity entity)
