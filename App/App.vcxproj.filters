@@ -13,11 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\SimpleFarm">
-      <UniqueIdentifier>{4a303124-d369-4254-b9f3-e42c69fd865a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\SimpleFarm">
       <UniqueIdentifier>{cb9d5afb-e910-4a9e-b81c-4e7a6f9c0a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Testing">
+      <UniqueIdentifier>{4a303124-d369-4254-b9f3-e42c69fd865a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -25,7 +25,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestState.cpp">
-      <Filter>Source Files\SimpleFarm</Filter>
+      <Filter>Source Files\Testing</Filter>
     </ClCompile>
     <ClCompile Include="SampleParticle.cpp">
       <Filter>Source Files</Filter>
@@ -38,5 +38,8 @@
     <ClInclude Include="SampleParticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

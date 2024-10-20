@@ -6,6 +6,9 @@
 
 #include <SFML/System/Clock.hpp>
 
+// Benchmark END : 5000 iterations took 15.720197 seconds. - 02.10.2024
+#define BENCHMARK
+
 kod::Game::Game()
 {
 	// TODO: hardcoded
@@ -42,6 +45,13 @@ void kod::Game::gameLoop()
 		return;
 	}
 
+#ifdef BENCHMARK
+	size_t benchmark_iterations = 0;
+	const size_t benchmark_iterationToExecute = 5000;
+	auto start = std::chrono::high_resolution_clock::now();
+	g_logger.log(kod::Logger::LogSeverity::FATAL, "Benchmark START");
+#endif
+
 	sf::Clock clock;
 	while (m_window.isOpen() && m_isRunning == true) {
 		sf::Time elapsed = clock.restart();
@@ -54,6 +64,18 @@ void kod::Game::gameLoop()
 		currentState()->draw();
 		currentState()->drawGui();
 		m_window.display();
+
+#ifdef BENCHMARK
+		benchmark_iterations++;
+		if (benchmark_iterationToExecute == benchmark_iterations) {
+			auto end = std::chrono::high_resolution_clock::now();
+			std::chrono::duration<double> elapsed_seconds = end - start;
+			g_logger.log(kod::Logger::LogSeverity::FATAL,
+			             std::string("Benchmark END: " + std::to_string(benchmark_iterationToExecute) +
+			                         " iterations took " + std::to_string(elapsed_seconds.count()) + " seconds.")
+			                 .c_str());
+		}
+#endif
 	}
 
 	cleanup();

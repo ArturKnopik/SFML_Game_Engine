@@ -10,6 +10,49 @@
 #include <random>
 #include <string_view>
 
+struct MyClass 
+{
+public:
+	MyClass() : y(id++) { std::cout << "MyClass c-tor: " << y << std::endl; };
+	~MyClass() = default;
+	size_t y;
+	static size_t id;
+
+private:
+};
+
+size_t MyClass::id = 0;
+
+class NotMyClass
+{
+public:
+	NotMyClass() : x(id++ * 2) { std::cout << "NotMyClass c-tor: " << x << std::endl; };
+	~NotMyClass() = default;
+	size_t x;
+	static size_t id;
+
+private:
+};
+
+class MySystem : kod::ecs::System
+{
+public:
+	MySystem(kod::ecs::ComponentManager& componentManager) : m_cm(componentManager){};
+	void handle(const size_t dt, kod::ecs::ComponentManager& componentManager) override
+	{
+	//	for (auto const& entity : this->m_cm.) {
+	//		auto& myClass = m_cm.getComponent<MyClass>(entity);
+	//		auto& notMyClass = m_cm.getComponent<NotMyClass>(entity);
+	//		std::cout << "NotMyClass c-tor: " << myClass.y << " : " << notMyClass.x << std::endl;
+	//	}
+	}
+
+private:
+	kod::ecs::ComponentManager& m_cm;
+};
+
+size_t NotMyClass::id = 0;
+
 TestState::TestState(kod::Game& game) : IState(game)
 {
 	// particle
@@ -65,10 +108,19 @@ TestState::TestState(kod::Game& game) : IState(game)
 		static std::uniform_real_distribution<float> x(300, 1200.f);
 		static std::uniform_real_distribution<float> y(600.f, 850.f);
 		m_particleEmiter.setPosition({x(gen), y(gen)});
-		LOG_I("Sheduled task executed;");
+		// LOG_I("Sheduled task executed;");
 	};
 
 	auto taskId = m_game.getSheduler().addSheaduledTask(task1, 100, true);
+
+	// ECS
+	kod::ecs::ComponentManager cm;
+	cm.registerComponent<MyClass>();
+	cm.registerComponent<NotMyClass>();
+	std::cout << cm.getComponents<MyClass>().getAllComponents().size() << std::endl;
+	std::cout << cm.getComponent<NotMyClass>(5).x << std::endl;
+	std::cout << cm.getComponents<NotMyClass>().getAllComponents().size() << std::endl;
+	std::cout << cm.getComponent<MyClass>(5).y << std::endl;
 
 	// other
 	loadResources();
