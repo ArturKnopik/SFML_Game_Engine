@@ -17,11 +17,9 @@ namespace EntityManager {
 		}
 
 		// SETUP
-
 		em.destroyEntity(10);
 		em.destroyEntity(20);
 		em.destroyEntity(25);
-		em.destroyEntity(1);
 
 		// THEN
 		auto entity = em.newEntity();
@@ -30,6 +28,9 @@ namespace EntityManager {
 		EXPECT_EQ(entity, 20);
 		entity = em.newEntity();
 		EXPECT_EQ(entity, 25);
+
+		EXPECT_THROW(em.newEntity(), std::runtime_error);
+		EXPECT_THROW(em.destroyEntity(static_cast<kod::ecs::Entity>(kod::ecs::MAX_ENTITIES + 1)), std::runtime_error);
 	}
 
 	TEST(UT_EntityManager, EntitySignature)
@@ -46,5 +47,7 @@ namespace EntityManager {
 		em.setSignature(entityt, signature);
 		auto testSignature = em.getSignature(entityt);
 		EXPECT_EQ(signature, testSignature);
+		EXPECT_THROW(em.getSignature(static_cast<kod::ecs::Entity>(kod::ecs::MAX_ENTITIES + 1)), std::runtime_error);
+		EXPECT_THROW(em.setSignature(static_cast<kod::ecs::Entity>(kod::ecs::MAX_ENTITIES + 1), kod::ecs::Signature()), std::runtime_error);
 	}
 }

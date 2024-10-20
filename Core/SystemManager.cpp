@@ -1,6 +1,6 @@
 #include "SystemManager.h"
 
-kod::ecs::TypeUid g_systemCounter = 0;
+kod::ecs::TypeUid kod::ecs::g_systemCounter = 0;
 
 kod::ecs::SystemManager::SystemManager(kod::ecs::ComponentManager& componentManager) :
     m_componentManager(componentManager)
@@ -9,7 +9,9 @@ kod::ecs::SystemManager::SystemManager(kod::ecs::ComponentManager& componentMana
 void kod::ecs::SystemManager::handleAll(const size_t dt)
 {
 	for (auto& system : m_systems) {
-		system->handle(dt, m_componentManager);
+		if (system) {
+			system->handle(dt, m_componentManager);
+		}
 	}
 }
 

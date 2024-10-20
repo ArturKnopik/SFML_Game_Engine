@@ -47,6 +47,8 @@ namespace Component {
 		anotherComponent.setData(entity, testAnotherComp);
 		// THEN
 		EXPECT_EQ(555, anotherComponent.getData(entity).y);
+		EXPECT_THROW(anotherComponent.getData(static_cast<kod::ecs::Entity>(kod::ecs::MAX_ENTITIES + 1)), std::runtime_error);
+		EXPECT_THROW(anotherComponent.setData(static_cast<kod::ecs::Entity>(kod::ecs::MAX_ENTITIES + 1), TestAnotherComponent()), std::runtime_error);
 	}
 
 	TEST(UT_ComponentManager, ComponentManager_getAllComponentData)

@@ -5,13 +5,13 @@
 #include <iostream>
 
 namespace SystemManager {
-	/*
-	class TestComponent1 : public kod::ecs::Component {
+	
+	class TestComponent1 {
 	public:
 		int xComponent = 0;
 	};
 
-	class TestComponent2 : public kod::ecs::Component {
+	class TestComponent2 {
 	public:
 		int yComponent = 0;
 	};
@@ -40,7 +40,7 @@ namespace SystemManager {
 				auto& comp1 = comps1.getAllComponents()[i];
 				comp1.xComponent += static_cast<int>(dt);
 				auto& comp2 = comps2.getAllComponents()[i];
-				comp2.yComponent += static_cast<int>(i);
+				comp2.yComponent += static_cast<int>(5+ i);
 			}
 			ySystem = 321;
 		};
@@ -50,6 +50,7 @@ namespace SystemManager {
 	TEST(UT_SystemManager, SystemManager_registerComponent)
 	{
 		// SETUP
+		kod::ecs::g_systemCounter = 0;
 		kod::ecs::ComponentManager cm;
 		cm.registerComponent<TestComponent1>();
 		cm.registerComponent<TestComponent2>();
@@ -60,14 +61,14 @@ namespace SystemManager {
 		systemManager.registerSystem<TestSystem2>();
 
 		// THEN
-		EXPECT_EQ(systemManager.getSystem<TestSystem1>().getSystemType(), 0);
-		EXPECT_EQ(systemManager.getSystem<TestSystem1>().getSystemType(), TestSystem1::getSystemType());
-		EXPECT_EQ(systemManager.getSystem<TestSystem2>().getSystemType(), 1);
-		EXPECT_EQ(systemManager.getSystem<TestSystem2>().getSystemType(), TestSystem2::getSystemType());
+		EXPECT_EQ(kod::ecs::getSystemId<TestSystem1>(), 0);
+		EXPECT_EQ(kod::ecs::getSystemId<TestSystem2>(), 1);
+		EXPECT_NE(kod::ecs::getSystemId<TestSystem1>(), kod::ecs::getSystemId<TestSystem2>());
 	}
 	TEST(UT_SystemManager, SystemManager_handleSystems)
 	{
 		// SETUP
+		kod::ecs::g_systemCounter = 0;
 		kod::ecs::ComponentManager cm;
 		cm.registerComponent<TestComponent1>();
 		cm.registerComponent<TestComponent2>();
@@ -88,15 +89,15 @@ namespace SystemManager {
 		auto& test2System = systemManager.getSystem<TestSystem2>();
 
 		// THEN
-		EXPECT_NE(systemManager.getSystem<TestSystem1>().getSystemType(), systemManager.getSystem<TestSystem2>().getSystemType());
-		EXPECT_EQ(systemManager.getSystem<TestSystem1>().getSystemType(), 0);
-		EXPECT_EQ(systemManager.getSystem<TestSystem2>().getSystemType(), 1);
+		EXPECT_NE(kod::ecs::getSystemId<TestSystem1>(), kod::ecs::getSystemId<TestSystem2>());
+		EXPECT_EQ(kod::ecs::getSystemId<TestSystem1>(), 0);
+		EXPECT_EQ(kod::ecs::getSystemId<TestSystem2>(), 1);
 
 		EXPECT_EQ(test1System.xSystem, 123);
 		EXPECT_EQ(test2System.ySystem, 321);
 		EXPECT_EQ(entity1Data.xComponent, 200);
-		EXPECT_EQ(entity2Data.yComponent, 100);
+		EXPECT_EQ(entity2Data.yComponent, 5);
 	}
-	*/
+	
 
 }

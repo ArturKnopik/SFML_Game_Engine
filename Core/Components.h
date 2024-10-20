@@ -44,13 +44,17 @@ private:
 template <typename T>
 inline ComponentsArray<T>::ComponentsArray()
 {
-	//to set valid id
+	//to set valid id on registration time
 	getComponentId<T>();
 }
 
 template <typename T>
 inline T& ComponentsArray<T>::getData(kod::ecs::Entity entity)
 {
+	if (entity >= MAX_ENTITIES) {
+		throw std::runtime_error("Can't get data, using Entity that is out of range!");
+	}
+
 	return m_componets[entity];
 }
 

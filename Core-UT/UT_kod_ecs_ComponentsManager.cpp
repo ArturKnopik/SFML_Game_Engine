@@ -14,6 +14,7 @@ namespace ComponentManager {
 	TEST(UT_ComponentManager, ComponentManager_registerComponent)
 	{
 		// SETUP
+		kod::ecs::g_componentCounter = 0;
 		auto entity = kod::ecs::EntityManager().newEntity();
 		kod::ecs::ComponentManager components;
 		components.registerComponent<TestComponent>();
@@ -29,6 +30,7 @@ namespace ComponentManager {
 	TEST(UT_ComponentManager, ComponentManager_getComponents)
 	{
 		// SETUP
+		kod::ecs::g_componentCounter = 0;
 		auto entity = kod::ecs::EntityManager().newEntity();
 		kod::ecs::ComponentManager components;
 		components.registerComponent<TestComponent>();

@@ -10,7 +10,7 @@
 #include <random>
 #include <string_view>
 
-struct MyClass : public kod::ecs::Component
+struct MyClass 
 {
 public:
 	MyClass() : y(id++) { std::cout << "MyClass c-tor: " << y << std::endl; };
@@ -23,7 +23,7 @@ private:
 
 size_t MyClass::id = 0;
 
-class NotMyClass : public kod::ecs::Component
+class NotMyClass
 {
 public:
 	NotMyClass() : x(id++ * 2) { std::cout << "NotMyClass c-tor: " << x << std::endl; };
@@ -38,13 +38,13 @@ class MySystem : kod::ecs::System
 {
 public:
 	MySystem(kod::ecs::ComponentManager& componentManager) : m_cm(componentManager){};
-	void update(const size_t dt)
+	void handle(const size_t dt, kod::ecs::ComponentManager& componentManager) override
 	{
-		for (auto const& entity : m_entities) {
-			auto& myClass = m_cm.getComponent<MyClass>(entity);
-			auto& notMyClass = m_cm.getComponent<NotMyClass>(entity);
-			std::cout << "NotMyClass c-tor: " << myClass.y << " : " << notMyClass.x << std::endl;
-		}
+	//	for (auto const& entity : this->m_cm.) {
+	//		auto& myClass = m_cm.getComponent<MyClass>(entity);
+	//		auto& notMyClass = m_cm.getComponent<NotMyClass>(entity);
+	//		std::cout << "NotMyClass c-tor: " << myClass.y << " : " << notMyClass.x << std::endl;
+	//	}
 	}
 
 private:

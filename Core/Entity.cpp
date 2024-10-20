@@ -37,7 +37,7 @@ void kod::ecs::EntityManager::destroyEntity(kod::ecs::Entity entity)
 
 kod::ecs::Signature kod::ecs::EntityManager::getSignature(kod::ecs::Entity entity)
 {
-	if (m_livingEntityCount >= MAX_ENTITIES) {
+	if (m_livingEntityCount >= MAX_ENTITIES || entity >= MAX_ENTITIES) {
 		throw std::runtime_error("Can't set signature for Entity that is out of range!");
 	}
 	return m_entitySignature[entity];
@@ -46,7 +46,7 @@ kod::ecs::Signature kod::ecs::EntityManager::getSignature(kod::ecs::Entity entit
 
 void kod::ecs::EntityManager::setSignature(kod::ecs::Entity entity, kod::ecs::Signature signature)
 {
-	if (m_livingEntityCount >= MAX_ENTITIES) {
+	if (m_livingEntityCount >= MAX_ENTITIES || entity >= MAX_ENTITIES) {
 		throw std::runtime_error("Can't set signature for Entity that is out of range!");
 	}
 	m_entitySignature[entity] = signature;

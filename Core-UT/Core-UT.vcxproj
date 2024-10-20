@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="UT_kod_ecs_Components.cpp" />
     <ClCompile Include="UT_kod_ecs_ComponentsManager.cpp" />
+    <ClCompile Include="UT_kod_ecs_ECS.cpp" />
     <ClCompile Include="UT_kod_ecs_Entity.cpp" />
     <ClCompile Include="UT_kod_ecs_SystemManager.cpp" />
     <ClCompile Include="UT_kod_Particle.cpp" />

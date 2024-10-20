@@ -12,12 +12,12 @@ namespace kod {
 namespace ecs {
 
 // duplication in Componets.cpp(only different variable/function maem, TODO: find way to separate it
-extern TypeUid g_SystemCounter;
+KOD_API extern TypeUid g_systemCounter;
 
 template <class T>
 TypeUid getSystemId()
 {
-	static TypeUid s_componentId = g_SystemCounter++;
+	static TypeUid s_componentId = g_systemCounter++;
 	return s_componentId;
 }
 
@@ -54,7 +54,7 @@ inline void SystemManager::registerSystem()
 {
 	static_assert(std::is_base_of<kod::ecs::System, T>::value, "T must be derived from kod::ecs::System!");
 
-	TypeUid typeUid = T::getTypeUid();
+	TypeUid typeUid = getSystemId<T>();
 
 	m_systems.insert(m_systems.begin() + typeUid, std::make_shared<T>());
 }
@@ -62,7 +62,7 @@ inline void SystemManager::registerSystem()
 template <typename T>
 inline T& SystemManager::getSystem()
 {
-	TypeUid typeUid = T::getTypeUid();
+	TypeUid typeUid = getSystemId<T>();
 
 	if (typeUid >= m_systems.size()) {
 		throw std::runtime_error("T<" + std::string(std::type_index(typeid(T)).name()) + "> component not registered!");
