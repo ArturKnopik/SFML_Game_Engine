@@ -1,11 +1,12 @@
 #pragma once
 #include "GameObject.h"
+#include "Gui.h"
 #include "SFML/Window/Event.hpp"
 #include "export.h"
 
+#include <boost/poly_collection/base_collection.hpp>
 #include <memory>
 #include <unordered_map>
-#include "Gui.h"
 
 namespace kod {
 
@@ -33,6 +34,7 @@ public:
 protected:
 	Game& m_game;
 	std::unordered_map<uint64_t, std::shared_ptr<kod::GameObject>> m_gameObjects;
+
 	kod::Gui m_gui;
 };
 

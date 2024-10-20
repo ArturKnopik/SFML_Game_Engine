@@ -4,7 +4,7 @@
 
 namespace Particle {
 
-	TEST(Animation_Frame, UT_Frame)
+	TEST(Animation_Frame, Frame)
 	{
 		kod::Frame frame({ 0,0,100,100 }, 12345);
 

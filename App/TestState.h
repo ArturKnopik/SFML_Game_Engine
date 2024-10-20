@@ -9,6 +9,7 @@
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <ECS.h>
 
 class TestState : public kod::IState
 {
@@ -28,11 +29,8 @@ private:
 	sf::Sprite m_sprite2;
 	kod::ParticleEmiter<SampleParticle> m_particleEmiter;
 
-	sf::RectangleShape m_particleCircle;
+	sf::RectangleShape m_particleRect;
 
 	sf::Clock m_clock;
 	sf::Time m_previousTime = sf::Time::Zero;
-
-	//	kod::Button m_button;
-	//	kod::Label m_label;
 };

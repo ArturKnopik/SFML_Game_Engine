@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Gui">
       <UniqueIdentifier>{ed8bd4c3-ba23-4c84-98da-85dbd6b480c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ECS">
+      <UniqueIdentifier>{c98964af-c7a9-4b04-940c-d9d7be9a115d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS">
+      <UniqueIdentifier>{ba4fb7e0-5999-4273-b22c-293cc568f96f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -49,9 +55,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DefinesUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StateManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ResourceHandler.h">
@@ -93,6 +96,24 @@
     <ClInclude Include="TextField.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="ECS.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentManager.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemManager.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -114,9 +135,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
@@ -152,8 +170,20 @@
     <ClCompile Include="TextField.cpp">
       <Filter>Source Files\Gui</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentManager.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemManager.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Components.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
