@@ -10,7 +10,7 @@ void kod::Widget::draw(sf::RenderWindow& window) {}
 
 void kod::Widget::update(size_t dt) {}
 
-void kod::Widget::handleEvent(sf::Event& event) {}
+void kod::Widget::handleEvent(const std::optional<sf::Event>& event) {}
 
 const size_t kod::Widget::getUid() const { return m_uid; }
 
@@ -38,7 +38,7 @@ void kod::Gui::update(size_t dt)
 	}
 }
 
-void kod::Gui::handleEvent(sf::Event& event)
+void kod::Gui::handleEvent(const std::optional<sf::Event>& event)
 {
 	for (auto& uiElement : m_uiElements) {
 		uiElement.second->handleEvent(event);

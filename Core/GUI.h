@@ -14,7 +14,7 @@ public:
 	KOD_API virtual ~Widget();
 	KOD_API virtual void draw(sf::RenderWindow& window);
 	KOD_API virtual void update(size_t dt);
-	KOD_API virtual void handleEvent(sf::Event& event);
+	KOD_API virtual void handleEvent(const std::optional<sf::Event>& event);
 	KOD_API size_t getUid();
 	KOD_API const size_t getUid() const;
 	// Shoulde be overriden if needed
@@ -37,7 +37,7 @@ public:
 	KOD_API ~Gui() = default;
 	KOD_API void draw(sf::RenderWindow& window);
 	KOD_API void update(size_t dt);
-	KOD_API void handleEvent(sf::Event& event);
+	KOD_API void handleEvent(const std::optional<sf::Event>& event);
 	KOD_API void addElement(std::shared_ptr<kod::Widget> widget);
 	KOD_API void removeElement(std::shared_ptr<kod::Widget> widget);
 	KOD_API void removeElement(size_t uid);

@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Gui">
       <UniqueIdentifier>{ed8bd4c3-ba23-4c84-98da-85dbd6b480c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="helpers">
+      <UniqueIdentifier>{3db301a6-52ef-4fc2-b562-4116d7afe5eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\helpers">
+      <UniqueIdentifier>{7fb5bc44-7eea-4c92-8a4e-cf2df1377710}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -93,6 +99,9 @@
     <ClInclude Include="TextField.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="font_arial.h">
+      <Filter>helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -152,8 +161,8 @@
     <ClCompile Include="TextField.cpp">
       <Filter>Source Files\Gui</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClCompile Include="font_arial.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

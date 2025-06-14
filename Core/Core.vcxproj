@@ -24,6 +24,7 @@
     <ClInclude Include="Const.h" />
     <ClInclude Include="DefinesUtil.h" />
     <ClInclude Include="export.h" />
+    <ClInclude Include="font_arial.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GUI.h" />
@@ -47,6 +48,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="font_arial.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GUI.cpp" />
@@ -64,9 +66,6 @@
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TextField.cpp" />
     <ClCompile Include="World.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -21,7 +21,7 @@ public:
 
 private:
 	size_t m_timeToNextFrame = 10000;
-	sf::IntRect m_imagePosition = {0, 0, 0, 0};
+	sf::IntRect m_imagePosition = {{0, 0}, {0, 0}};
 	std::shared_ptr<sf::Texture> m_texture = nullptr;
 };
 

@@ -19,29 +19,38 @@ void kod::TextField::draw(sf::RenderWindow& window)
 	kod::Label::draw(window);
 }
 
-void kod::TextField::handleEvent(sf::Event& event)
+void kod::TextField::handleEvent(const std::optional<sf::Event>& event)
 {
-	if (event.type == sf::Event::MouseButtonPressed) {
-		if (m_background.getGlobalBounds().contains(
-		        sf::Vector2f(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))) {
+	if (!event.has_value()) {
+		return;
+	}
+
+	if (const auto* mousekeyPressed = event->getIf<sf::Event::MouseButtonPressed>()) {
+		sf::Vector2f mousePos = sf::Vector2f(static_cast<float>(mousekeyPressed->position.x),
+		                                     static_cast<float>(mousekeyPressed->position.y));
+
+		if (m_background.getGlobalBounds().contains(mousePos)) {
 			m_hasFocus = true;
-			m_background.setOutlineThickness(2);
+			m_background.setOutlineThickness(2.f);
 		} else {
 			m_hasFocus = false;
-			m_background.setOutlineThickness(0);
+			m_background.setOutlineThickness(0.f);
 		}
 	}
 
-	if (m_hasFocus && event.type == sf::Event::TextEntered) {
-		if (event.text.unicode < 128) {
-			if (event.text.unicode == 10 || event.text.unicode == 13) { // enter linux and windows
+	if (const auto* text = event->getIf<sf::Event::TextEntered>()) {
+		char32_t unicode = text->unicode;
+
+		if (unicode < 128) {
+			if (unicode == 10 || unicode == 13) { // enter: Linux/Windows
 				m_hasFocus = false;
-				m_background.setOutlineThickness(0);
-			} else if (event.text.unicode == '\b' && !m_inputString.empty()) {
+				m_background.setOutlineThickness(0.f);
+			} else if (unicode == '\b' && !m_inputString.empty()) {
 				m_inputString.pop_back();
-			} else if (event.text.unicode >= 32) {
-				m_inputString += static_cast<char>(event.text.unicode);
+			} else if (unicode >= 32 && unicode < 127) {
+				m_inputString += static_cast<char>(unicode);
 			}
+
 			kod::Label::setString(m_inputString);
 			updateTextPosition();
 		}

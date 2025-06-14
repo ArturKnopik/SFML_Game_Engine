@@ -12,7 +12,7 @@ public:
 	KOD_API TextField();
 	KOD_API virtual ~TextField();
 	KOD_API virtual void draw(sf::RenderWindow& window) override;
-	KOD_API virtual void handleEvent(sf::Event& event) override;
+	KOD_API virtual void handleEvent(const std::optional<sf::Event>& event) override;
 	KOD_API virtual void setPosition(sf::Vector2f position) override;
 	KOD_API virtual sf::Vector2f getPosition() override;
 	KOD_API virtual void setSize(sf::Vector2f size) override;

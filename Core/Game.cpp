@@ -14,7 +14,7 @@ kod::Game::Game()
 	sfmlSettings.antialiasingLevel = 8;
 	sf::Style::None - style without border
 	*/
-	m_window.create(sf::VideoMode(1500, 900), "Default app name" /*, sf::Style::Default, sfmlSettings*/);
+	m_window.create(sf::VideoMode({1500, 900}), "Default app name" /*, sf::Style::Default, sfmlSettings*/);
 	// m_window.setFramerateLimit(60);
 	m_sheduler.start();
 }
@@ -27,7 +27,7 @@ kod::Game::Game(const char* appName)
 	sfmlSettings.antialiasingLevel = 8;
 	sf::Style::None - style without border
 	*/
-	m_window.create(sf::VideoMode(1500, 900), appName /*, sf::Style::Default, sfmlSettings*/);
+	m_window.create(sf::VideoMode({1500, 900}), appName /*, sf::Style::Default, sfmlSettings*/);
 	// m_window.setFramerateLimit(60);
 	m_sheduler.start();
 }
@@ -61,23 +61,16 @@ void kod::Game::gameLoop()
 
 void kod::Game::handleEvents()
 {
-	sf::Event evt;
-	while (m_window.pollEvent(evt)) {
-		switch (evt.type) {
-			case sf::Event::Closed:
-				m_window.close();
-				m_isRunning = false;
-				m_sheduler.stop();
-				break;
-			case sf::Event::Resized:
-				sf::FloatRect visibleArea(0, 0, static_cast<float>(evt.size.width),
-				                          static_cast<float>(evt.size.height));
-				m_window.setView(sf::View(visibleArea));
-				break;
+	while (const std::optional event = m_window.pollEvent()) {
+		if (event->is<sf::Event::Closed>()) {
+			m_window.close();
+		} else if (const auto* resize = event->getIf<sf::Event::Resized>()) {
+			sf::FloatRect visibleArea({0, 0}, {static_cast<float>(resize->size.x), static_cast<float>(resize->size.y)});
+			m_window.setView(sf::View(visibleArea));
 		}
 
-		currentState()->input(evt);
-		currentState()->inputGui(evt);
+		currentState()->input(event);
+		currentState()->inputGui(event);
 	}
 	currentState()->input();
 }

@@ -16,7 +16,7 @@ public:
 	TestState(kod::Game& game);
 	virtual void draw() override;
 	virtual void update(const size_t dt) override;
-	virtual void input(sf::Event& event) override;
+	virtual void input(const std::optional<sf::Event>& event) override;
 
 private:
 	void loadResources();
@@ -24,8 +24,8 @@ private:
 	void loadFonts();
 
 	// TODO: remove
-	sf::Sprite m_sprite1;
-	sf::Sprite m_sprite2;
+	//sf::Sprite m_sprite1;
+	//sf::Sprite m_sprite2;
 	kod::ParticleEmiter<SampleParticle> m_particleEmiter;
 
 	sf::RectangleShape m_particleCircle;

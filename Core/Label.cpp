@@ -1,12 +1,14 @@
 #include "Label.h"
 
-kod::Label::Label()
+#include "font_arial.h"
+
+kod::Label::Label() : m_font(getArialFont(), getArialFontSize()), m_text(m_font)
 {
 	m_text.setCharacterSize(10);
 	m_text.setFillColor(sf::Color::Black);
 }
 
-kod::Label::Label(const std::string& text)
+kod::Label::Label(const std::string& text) : m_font(getArialFont(), getArialFontSize()), m_text(m_font)
 {
 	m_text.setString(text);
 	m_text.setCharacterSize(10);
@@ -22,6 +24,7 @@ const char* kod::Label::getString()
 {
 	m_cachedAnsiString = m_text.getString().toAnsiString();
 	return m_cachedAnsiString.c_str();
+	return nullptr;
 }
 
 void kod::Label::setFont(sf::Font font)
@@ -42,9 +45,9 @@ void kod::Label::setSize(sf::Vector2f size)
 	m_text.setPosition(size);
 }
 
-sf::Vector2f kod::Label::getPosition() { return m_text.getGlobalBounds().getPosition(); }
+sf::Vector2f kod::Label::getPosition() { return m_text.getGlobalBounds().position; }
 
-sf::Vector2f kod::Label::getSize() { return m_text.getGlobalBounds().getSize(); }
+sf::Vector2f kod::Label::getSize() { return m_text.getGlobalBounds().size; }
 
 void kod::Label::setFontSize(unsigned int size) { m_text.setCharacterSize(size); }
 

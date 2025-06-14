@@ -21,10 +21,9 @@ TestState::TestState(kod::Game& game) : IState(game)
 
 	// gui
 	auto font = sf::Font();
-	font.loadFromFile("./Assets/Fonts/Arial.ttf");
+	font.openFromFile("./Assets/Fonts/Branda-yolq.ttf");
 
-	auto button = std::make_shared<kod::Button>("TTTTT");
-	button->setFont(font);
+	auto button = std::make_shared<kod::Button>("TEST DESC");
 	button->setPosition({100, 100});
 	button->setSize({50, 20});
 	button->setOutlineColorOnHover(sf::Color::Red);
@@ -83,14 +82,14 @@ void TestState::draw()
 	// m_game.getRenderWindow().draw(m_sprite1);
 	// m_game.getRenderWindow().draw(c);
 
-	m_sprite2.setColor(sf::Color(255, 255, 100, 100));
-	m_sprite2.setPosition({300, 300});
+	//m_sprite2.setColor(sf::Color(255, 255, 100, 100));
+	//m_sprite2.setPosition({300, 300});
 	auto anim = m_game.getResourceManager().getAnimation("test");
 	if (anim) {
 		auto texture = anim->getCurrentFrame().getTexture();
 		if (texture) {
-			m_sprite2.setTextureRect(anim->getCurrentFrame().getFrameRect());
-			m_sprite2.setTexture(*anim->getCurrentFrame().getTexture());
+			//m_sprite2.setTextureRect(anim->getCurrentFrame().getFrameRect());
+			//m_sprite2.setTexture(*anim->getCurrentFrame().getTexture());
 		}
 	}
 	// m_game.getRenderWindow().draw(m_sprite2);
@@ -114,7 +113,7 @@ void TestState::update(const size_t dt)
 	                                  ", particles: " + std::to_string(m_particleEmiter.getParticleCount()));
 }
 
-void TestState::input(sf::Event& event) {}
+void TestState::input(const std::optional<sf::Event>& event) {}
 
 void TestState::loadResources()
 {
@@ -123,19 +122,19 @@ void TestState::loadResources()
 	g_logger.log(kod::Logger::LogSeverity::DEBUG, ">> Loading textures");
 	loadTextures();
 	auto texture = std::make_shared<sf::Texture>();
-	if (texture->loadFromFile("./Assets/Images/terrain.png", {0, 0, 200, 200})) {
+	if (texture->loadFromFile("./Assets/Images/terrain.png", false, {{0, 0}, {200, 200}})) {
 		m_game.getResourceManager().addResource("ground_grass_1", texture);
 	}
 
-	m_sprite1.setPosition({0, 0});
-	m_sprite1.setTexture(*m_game.getResourceManager().getTexture("ground_grass_1"));
+	//m_sprite1.setPosition({0, 0});
+	//m_sprite1.setTexture(*m_game.getResourceManager().getTexture("ground_grass_1"));
 
 	g_logger.log(kod::Logger::LogSeverity::DEBUG, ">> Loading ItemTypes");
 	if (m_game.getResourceManager().getTexture("ground_grass_1")) {
-		kod::Frame frame1({0, 0, 32, 32}, 1000);
-		kod::Frame frame2({32, 0, 32, 32}, 1000);
-		kod::Frame frame3({64, 0, 32, 32}, 1000);
-		kod::Frame frame4({96, 0, 32, 32}, 1000);
+		kod::Frame frame1({{0, 0}, {32, 32}}, 1000);
+		kod::Frame frame2({{32, 0}, {32, 32}}, 1000);
+		kod::Frame frame3({{64, 0}, {32, 32}}, 1000);
+		kod::Frame frame4({{96, 0}, {32, 32}}, 1000);
 		kod::Animation animation;
 		frame1.setTexture(m_game.getResourceManager().getTexture("ground_grass_1"));
 		frame2.setTexture(m_game.getResourceManager().getTexture("ground_grass_1"));
@@ -168,7 +167,7 @@ void TestState::loadTextures()
 					continue;
 				}
 				auto texture = std::make_shared<sf::Texture>();
-				if (texture->loadFromFile(tx["file"], {0, 0, tx["width"], tx["height"]})) {
+				if (texture->loadFromFile(tx["file"], false, {{0, 0}, {tx["width"], tx["height"]}})) {
 					m_game.getResourceManager().addResource(std::string_view(tx["name"]), texture);
 					g_logger.log(kod::Logger::LogSeverity::DEBUG,
 					             std::string("Texture '" + std::string(tx["name"]) + "' added").c_str());
@@ -200,7 +199,7 @@ void TestState::loadFonts()
 				}
 
 				sf::Font font;
-				if (font.loadFromFile(tx["file"])) {
+				if (font.openFromFile(tx["file"])) {
 					m_game.getResourceManager().addResource(std::string_view(tx["name"]), font);
 					g_logger.log(kod::Logger::LogSeverity::DEBUG,
 					             std::string("Texture '" + std::string(tx["name"]) + "' added").c_str());

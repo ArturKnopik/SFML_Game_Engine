@@ -8,9 +8,9 @@ void kod::IState::drawGui() { m_gui.draw(m_game.getRenderWindow()); }
 
 void kod::IState::updateGui(const size_t dt) { m_gui.update(dt); }
 
-void kod::IState::input(sf::Event& event) {}
+void kod::IState::input(const std::optional<sf::Event> &event) {}
 
-void kod::IState::inputGui(sf::Event& event) { m_gui.handleEvent(event); }
+void kod::IState::inputGui(const std::optional<sf::Event> &event) { m_gui.handleEvent(event); }
 
 void kod::IState::input() {}
 

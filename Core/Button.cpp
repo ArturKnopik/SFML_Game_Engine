@@ -1,4 +1,4 @@
-#include "Button.h"
+﻿#include "Button.h"
 
 #include <SFML/Window/Event.hpp>
 #include <iostream>
@@ -24,20 +24,25 @@ void kod::Button::draw(sf::RenderWindow& window)
 
 void kod::Button::update(size_t dt) { kod::Label::update(dt); }
 
-void kod::Button::handleEvent(sf::Event& event)
+void kod::Button::handleEvent(const std::optional<sf::Event>& event)
 {
-	if (!(event.type == sf::Event::MouseMoved || event.type == sf::Event::MouseButtonPressed)) {
+	if (!event.has_value()) {
 		return;
 	}
-	bool isHovered = false;
 
-	sf::Vector2f mousePos(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y));
-	// override mouse poss in case of click event, required to draw valid outline
-	if (event.type == sf::Event::MouseButtonPressed) {
-		mousePos = sf::Vector2f(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
+	bool isHovered = false;
+	sf::Vector2f mousePos;
+
+	if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>()) {
+		mousePos = {float(mouseMoved->position.x), float(mouseMoved->position.y)};
+	} else if (auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>()) {
+		mousePos = {float(mouseButtonPressed->position.x), float(mouseButtonPressed->position.y)};
+	} else {
+		return;
 	}
-	sf::Vector2f buttonPos = m_background.getPosition();
-	sf::Vector2f buttonSize = m_background.getSize();
+
+	const auto buttonPos = m_background.getPosition();
+	const auto buttonSize = m_background.getSize();
 
 	if (mousePos.x >= buttonPos.x && mousePos.x <= buttonPos.x + buttonSize.x && mousePos.y >= buttonPos.y &&
 	    mousePos.y <= buttonPos.y + buttonSize.y) {
@@ -47,7 +52,7 @@ void kod::Button::handleEvent(sf::Event& event)
 		m_background.setOutlineColor(m_outlineColor);
 	}
 
-	if (event.type == sf::Event::MouseButtonPressed) {
+	if (const auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>()) {
 		if (isHovered) {
 			onClick();
 		}

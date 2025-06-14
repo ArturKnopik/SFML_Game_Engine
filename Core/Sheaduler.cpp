@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include <syncstream>
+#include <chrono>
 
 using time_stamp = std::chrono::time_point<std::chrono::system_clock, std::chrono::microseconds>;
 
