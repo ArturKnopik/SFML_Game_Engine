@@ -27,7 +27,6 @@ size_t kod::Widget::getUid() { return m_uid; }
 void kod::Gui::draw(sf::RenderWindow& window)
 {
 	for (auto& uiElement : m_uiElements) {
-		// Do stuff
 		uiElement.second->draw(window);
 	}
 }

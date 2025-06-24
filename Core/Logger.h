@@ -22,11 +22,11 @@ public:
 
 	enum class LogSeverity
 	{
-		DEBUG = 0,
-		INFO = 1,
-		WARNING = 2,
-		ERROR = 3,
-		FATAL = 4,
+		LDEBUG = 0,
+		LINFO = 1,
+		LWARNING = 2,
+		LERROR = 3,
+		LFATAL = 4,
 	};
 
 	KOD_API Logger();
@@ -51,7 +51,7 @@ private:
 	std::string prepareLogMessage(kod::Logger::LogSeverity lvl, const std::string& message, const std::string& file,
 	                              int line);
 
-	kod::Logger::LogSeverity m_minLogLevel = kod::Logger::LogSeverity::FATAL;
+	kod::Logger::LogSeverity m_minLogLevel = kod::Logger::LogSeverity::LFATAL;
 	std::string m_filename;
 	std::ofstream m_file;
 	std::thread m_thread;
@@ -68,8 +68,8 @@ private:
 
 KOD_API extern kod::Logger g_logger;
 
-#define LOG_D(message) g_logger.log(kod::Logger::LogSeverity::DEBUG, message)
-#define LOG_I(message) g_logger.log(kod::Logger::LogSeverity::INFO, message)
-#define LOG_W(message) g_logger.log(kod::Logger::LogSeverity::WARNING, message)
-#define LOG_E(message) g_logger.log(kod::Logger::LogSeverity::ERROR, message)
-#define LOG_F(message) g_logger.log(kod::Logger::LogSeverity::FATAL, message)
+#define LOG_D(message) g_logger.log(kod::Logger::LogSeverity::LDEBUG, message)
+#define LOG_I(message) g_logger.log(kod::Logger::LogSeverity::LINFO, message)
+#define LOG_W(message) g_logger.log(kod::Logger::LogSeverity::LWARNING, message)
+#define LOG_E(message) g_logger.log(kod::Logger::LogSeverity::LERROR, message)
+#define LOG_F(message) g_logger.log(kod::Logger::LogSeverity::LFATAL, message)

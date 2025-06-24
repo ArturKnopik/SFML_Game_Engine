@@ -38,21 +38,23 @@ void kod::TextField::handleEvent(const std::optional<sf::Event>& event)
 		}
 	}
 
-	if (const auto* text = event->getIf<sf::Event::TextEntered>()) {
-		char32_t unicode = text->unicode;
+	if (m_hasFocus) {
+		if (const auto* text = event->getIf<sf::Event::TextEntered>()) {
+			char32_t unicode = text->unicode;
 
-		if (unicode < 128) {
-			if (unicode == 10 || unicode == 13) { // enter: Linux/Windows
-				m_hasFocus = false;
-				m_background.setOutlineThickness(0.f);
-			} else if (unicode == '\b' && !m_inputString.empty()) {
-				m_inputString.pop_back();
-			} else if (unicode >= 32 && unicode < 127) {
-				m_inputString += static_cast<char>(unicode);
+			if (unicode < 128) {
+				if (unicode == 10 || unicode == 13) { // enter: Linux/Windows
+					m_hasFocus = false;
+					m_background.setOutlineThickness(0.f);
+				} else if (unicode == '\b' && !m_inputString.empty()) {
+					m_inputString.pop_back();
+				} else if (unicode >= 32 && unicode < 127) {
+					m_inputString += static_cast<char>(unicode);
+				}
+
+				kod::Label::setString(m_inputString);
+				updateTextPosition();
 			}
-
-			kod::Label::setString(m_inputString);
-			updateTextPosition();
 		}
 	}
 }

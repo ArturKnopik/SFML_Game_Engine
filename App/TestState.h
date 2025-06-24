@@ -23,16 +23,10 @@ private:
 	void loadTextures();
 	void loadFonts();
 
-	// TODO: remove
-	//sf::Sprite m_sprite1;
-	//sf::Sprite m_sprite2;
 	kod::ParticleEmiter<SampleParticle> m_particleEmiter;
 
 	sf::RectangleShape m_particleCircle;
 
 	sf::Clock m_clock;
 	sf::Time m_previousTime = sf::Time::Zero;
-
-	//	kod::Button m_button;
-	//	kod::Label m_label;
 };

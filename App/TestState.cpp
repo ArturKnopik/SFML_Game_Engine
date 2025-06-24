@@ -37,10 +37,10 @@ TestState::TestState(kod::Game& game) : IState(game)
 	addGuiElement(textField);
 
 	kod::ButtonCb buttonCb = [this, button, labelId]() {
-		std::random_device rd;
-		std::mt19937 gen(rd());
-		std::uniform_real_distribution<float> x(300, 1200.f);
-		std::uniform_real_distribution<float> y(600.f, 850.f);
+		static std::random_device rd;
+		static std::mt19937 gen(rd());
+		static std::uniform_real_distribution<float> x(300, 1200.f);
+		static std::uniform_real_distribution<float> y(600.f, 850.f);
 		m_particleEmiter.setPosition({x(gen), y(gen)});
 		auto textField = std::dynamic_pointer_cast<kod::TextField>(m_gui.getElement(labelId));
 
@@ -79,20 +79,13 @@ void TestState::draw()
 	c.setFillColor(sf::Color::Red);
 	c.setPosition({100, 100});
 	c.setRadius(40);
-	// m_game.getRenderWindow().draw(m_sprite1);
-	// m_game.getRenderWindow().draw(c);
 
-	//m_sprite2.setColor(sf::Color(255, 255, 100, 100));
-	//m_sprite2.setPosition({300, 300});
 	auto anim = m_game.getResourceManager().getAnimation("test");
 	if (anim) {
 		auto texture = anim->getCurrentFrame().getTexture();
 		if (texture) {
-			//m_sprite2.setTextureRect(anim->getCurrentFrame().getFrameRect());
-			//m_sprite2.setTexture(*anim->getCurrentFrame().getTexture());
 		}
 	}
-	// m_game.getRenderWindow().draw(m_sprite2);
 	m_particleEmiter.draw(m_game.getRenderWindow());
 }
 
@@ -125,9 +118,6 @@ void TestState::loadResources()
 	if (texture->loadFromFile("./Assets/Images/terrain.png", false, {{0, 0}, {200, 200}})) {
 		m_game.getResourceManager().addResource("ground_grass_1", texture);
 	}
-
-	//m_sprite1.setPosition({0, 0});
-	//m_sprite1.setTexture(*m_game.getResourceManager().getTexture("ground_grass_1"));
 
 	g_logger.log(kod::Logger::LogSeverity::DEBUG, ">> Loading ItemTypes");
 	if (m_game.getResourceManager().getTexture("ground_grass_1")) {

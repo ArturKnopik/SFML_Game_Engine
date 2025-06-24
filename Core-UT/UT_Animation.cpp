@@ -2,7 +2,7 @@
 
 #include "../Core/Animation.h"
 
-//namespace Particle {
+namespace Particle {
 
 
 TEST(Animation_Frame, UT_Frame)
@@ -12,4 +12,4 @@ TEST(Animation_Frame, UT_Frame)
 	EXPECT_EQ(frame.getDuration(), 12345);
 }
 
-//}
+}

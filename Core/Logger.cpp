@@ -20,8 +20,8 @@ void kod::Logger::stop()
 
 void kod::Logger::setLogLevel(kod::Logger::LogSeverity lvl)
 {
-	if (lvl > kod::Logger::LogSeverity::ERROR) {
-		lvl = kod::Logger::LogSeverity::ERROR;
+	if (lvl > kod::Logger::LogSeverity::LERROR) {
+		lvl = kod::Logger::LogSeverity::LERROR;
 	}
 	m_minLogLevel = lvl;
 }
@@ -78,15 +78,15 @@ void kod::Logger::logHandler()
 std::string kod::Logger::getSeverityString(kod::Logger::LogSeverity lvl)
 {
 	switch (lvl) {
-		case LogSeverity::INFO:
+		case LogSeverity::LINFO:
 			return "INFO";
-		case LogSeverity::WARNING:
+		case LogSeverity::LWARNING:
 			return "WARNING";
-		case LogSeverity::ERROR:
+		case LogSeverity::LERROR:
 			return "ERROR";
-		case LogSeverity::FATAL:
+		case LogSeverity::LFATAL:
 			return "FATAL";
-		case LogSeverity::DEBUG:
+		case LogSeverity::LDEBUG:
 			return "DEBUG";
 		default:
 			return "INVALID";

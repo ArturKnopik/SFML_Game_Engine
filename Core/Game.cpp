@@ -38,7 +38,7 @@ void kod::Game::gameLoop()
 {
 	if (!m_stateManager.currentState()) {
 		m_window.close();
-		g_logger.log(kod::Logger::LogSeverity::ERROR, "There is no state object in the list, stoping!");
+		g_logger.log(kod::Logger::LogSeverity::LERROR, "There is no state object in the list, stoping!");
 		return;
 	}
 
